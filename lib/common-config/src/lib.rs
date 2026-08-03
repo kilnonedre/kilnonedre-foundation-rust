@@ -2,6 +2,7 @@ mod config;
 
 pub mod env;
 pub mod start;
+pub mod util;
 
 pub use config::{
     env::load_env,
