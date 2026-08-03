@@ -4,9 +4,9 @@ use sea_orm::entity::prelude::DateTimeWithTimeZone;
 use uuid::Uuid;
 
 use crate::{
-    lookup_required, model::common_audit_resp::CommonAuditBaseResp, util::lookup::lookup_optional,
-    AuditStatus, CommonAuditResp, CrmAggregateAccountModel, CrmAggregateMerchantModel,
-    EntityStatus,
+    lookup_required, model::common_audit_resp::CommonAuditBaseResp,
+    r#enum::audit_status::AuditStatus, util::lookup::lookup_optional, CommonAuditResp,
+    CrmAggregateAccountModel, CrmAggregateMerchantModel, EntityStatus,
 };
 
 pub fn to_common_audit_resp(

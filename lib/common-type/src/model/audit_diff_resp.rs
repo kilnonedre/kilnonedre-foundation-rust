@@ -3,7 +3,9 @@ use serde::Serialize;
 use utoipa::ToSchema;
 use uuid::Uuid;
 
-use crate::{model::crm_model::account_model::CrmAggregateAccountModel, AuditStatus};
+use crate::{
+    model::crm_model::account_model::CrmAggregateAccountModel, r#enum::audit_status::AuditStatus,
+};
 
 #[derive(Debug, Serialize, ToSchema)]
 #[serde(rename_all = "camelCase")]

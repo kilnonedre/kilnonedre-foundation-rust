@@ -1,6 +1,6 @@
 use common_grpc::{
-    GrpcCatalogProductSkuClient, GrpcCrmAccountClient, GrpcCrmConsumerProfileClient,
-    GrpcCrmIdentityClient, GrpcCrmMerchantClient, GrpcGeoLocationClient, GrpcLogisticsRouteClient,
+    GrpcCrmAccountClient, GrpcCrmConsumerProfileClient, GrpcCrmIdentityClient,
+    GrpcCrmMerchantClient, GrpcGeoLocationClient, GrpcLogisticsRouteClient,
     GrpcProcurementPurchaserClient, GrpcProcurementSupplierClient, GrpcWmsWarehouseClient,
     WorkflowProcessGrpcClient,
 };
@@ -9,12 +9,12 @@ use std::time::Duration;
 use tokio::time::sleep;
 
 use crate::env::grpc_host::{
-    GRPC_CATALOG_HOST, GRPC_CRM_HOST, GRPC_GEO_HOST, GRPC_LOGISTIC_HOST, GRPC_PROCUREMENT_HOST,
-    GRPC_WMS_HOST, GRPC_WORKFLOW_HOST,
+    GRPC_CRM_HOST, GRPC_GEO_HOST, GRPC_LOGISTIC_HOST, GRPC_PROCUREMENT_HOST, GRPC_WMS_HOST,
+    GRPC_WORKFLOW_HOST,
 };
 use crate::env::grpc_port::{
-    GRPC_CATALOG_PORT, GRPC_CRM_PORT, GRPC_GEO_PORT, GRPC_LOGISTIC_PORT, GRPC_PROCUREMENT_PORT,
-    GRPC_WMS_PORT, GRPC_WORKFLOW_PORT,
+    GRPC_CRM_PORT, GRPC_GEO_PORT, GRPC_LOGISTIC_PORT, GRPC_PROCUREMENT_PORT, GRPC_WMS_PORT,
+    GRPC_WORKFLOW_PORT,
 };
 
 fn spawn_grpc_reconnect<F, Fut>(name: &'static str, addr: String, init: F)
@@ -153,18 +153,6 @@ pub fn spawn_procurement_supplier_grpc_reconnect() {
         format!("{}:{}", *GRPC_PROCUREMENT_HOST, *GRPC_PROCUREMENT_PORT),
         |addr| async move {
             GrpcProcurementSupplierClient::init(&addr)
-                .await
-                .map_err(|e| e.into())
-        },
-    );
-}
-
-pub fn spawn_catalog_product_sku_grpc_reconnect() {
-    spawn_grpc_reconnect(
-        "CatalogProductSku",
-        format!("{}:{}", *GRPC_CATALOG_HOST, *GRPC_CATALOG_PORT),
-        |addr| async move {
-            GrpcCatalogProductSkuClient::init(&addr)
                 .await
                 .map_err(|e| e.into())
         },

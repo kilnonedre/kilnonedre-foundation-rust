@@ -1,4 +1,3 @@
-pub mod catalog;
 pub mod crm;
 pub mod geo;
 pub mod logistics;

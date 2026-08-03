@@ -2,9 +2,7 @@ use actix_web::{http::header, HttpRequest};
 use common_web::{util::error::svc_err_internal_msg, ApiError};
 use sea_orm::prelude::Uuid;
 
-use crate::{
-    model::operator_context::OperatorContext, r#enum::common::operator_type::OperatorType,
-};
+use crate::{OperatorContext, OperatorType};
 
 pub fn get_operator_context(req: &HttpRequest) -> Result<OperatorContext, ApiError> {
     let operator_type = get_x_operator_type(req)?;

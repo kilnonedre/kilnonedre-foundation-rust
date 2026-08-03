@@ -7,7 +7,8 @@ use crate::{
     model::crm_model::{
         account_model::CrmAggregateAccountModel, merchant_model::CrmAggregateMerchantModel,
     },
-    AuditStatus, EntityStatus,
+    r#enum::audit_status::AuditStatus,
+    EntityStatus,
 };
 
 pub trait HasAuditMeta {

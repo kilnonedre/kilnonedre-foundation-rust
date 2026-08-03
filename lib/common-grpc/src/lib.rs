@@ -1,10 +1,6 @@
 mod client;
 
 pub use client::{
-    catalog::{
-        product::GrpcCatalogProductClient, product_sku::GrpcCatalogProductSkuClient,
-        product_spu::GrpcCatalogProductSpuClient,
-    },
     crm::{
         account::GrpcCrmAccountClient, consumer_profile::GrpcCrmConsumerProfileClient,
         identity::GrpcCrmIdentityClient, merchant::GrpcCrmMerchantClient,

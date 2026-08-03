@@ -2,7 +2,7 @@ use sea_orm::prelude::Uuid;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-use crate::r#enum::common::operator_type::OperatorType;
+use crate::r#enum::operator_type::OperatorType;
 
 #[derive(Serialize, ToSchema, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
