@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package crm.v1;
+
+import "common/v1/common.proto";
+
+service GrpcCrmConsumerProfileService {
+  // 微信小程序登录
+  rpc WeChatLogin(GrpcCrmConsumerProfileServiceWeChatLoginRequest) returns (GrpcCrmConsumerProfileServiceWeChatLoginResponse);
+
+  // 获取 Open ID
+  rpc GetOpenId(GrpcCrmConsumerProfileServiceGetOpenIdRequest) returns (GrpcCrmConsumerProfileServiceGetOpenIdResponse);
+
+  // 创建
+  rpc Create(GrpcCrmConsumerProfileServiceCreateRequest) returns (GrpcCrmConsumerProfileServiceCreateResponse);
+
+  // 创建
+  rpc Update(GrpcCrmConsumerProfileServiceUpdateRequest) returns (GrpcCrmConsumerProfileServiceUpdateResponse);
+
+  // 创建
+  rpc Delete(GrpcCrmConsumerProfileServiceDeleteRequest) returns (GrpcCrmConsumerProfileServiceDeleteResponse);
+}
+
+// 微信小程序登录请求
+message GrpcCrmConsumerProfileServiceWeChatLoginRequest {
+  // 小程序登录凭证 ID
+  string open_id = 1;
+
+  // 手机号码
+  optional string phone = 2;
+
+  // 身份类型（必传）
+  common.v1.GrpcOperatorType type = 3;
+
+  // 租户 ID
+  string merchant_id = 4;
+
+  // 邀请人 ID
+  optional string inviter_id = 5;
+}
+
+// 微信小程序登录响应
+message GrpcCrmConsumerProfileServiceWeChatLoginResponse {
+  // 用户 ID
+  string id = 1;
+}
+
+// 获取 Open ID 请求
+message GrpcCrmConsumerProfileServiceGetOpenIdRequest {
+  // 用户 ID
+  string id = 1;
+}
+
+// 获取 Open ID 响应
+message GrpcCrmConsumerProfileServiceGetOpenIdResponse {
+  // 小程序登录凭证 ID
+  optional string open_id = 1;
+}
+
+// 创建客户请求
+message GrpcCrmConsumerProfileServiceCreateRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 手机号
+  string phone = 2;
+
+  // 邮箱
+  optional string email = 3;
+
+  // 用户名
+  string username = 4;
+
+  // 密码
+  optional string password = 5;
+}
+
+// 创建客户响应
+message GrpcCrmConsumerProfileServiceCreateResponse {
+  // 用户 ID
+  string id = 1;
+}
+
+// 更新客户请求
+message GrpcCrmConsumerProfileServiceUpdateRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 原实体 ID
+  string id = 2;
+
+  // 手机号
+  string phone = 3;
+
+  // 邮箱
+  optional string email = 4;
+
+  // 用户名
+  string username = 5;
+
+  // 密码
+  optional string password = 6;
+
+  // 更新原因
+  string updated_reason = 7;
+}
+
+// 更新客户响应
+message GrpcCrmConsumerProfileServiceUpdateResponse {}
+
+// 创建客户请求
+message GrpcCrmConsumerProfileServiceDeleteRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 原实体 ID
+  string id = 2;
+
+  // 删除原因
+  string updated_reason = 3;
+}
+
+// 创建客户响应
+message GrpcCrmConsumerProfileServiceDeleteResponse {}

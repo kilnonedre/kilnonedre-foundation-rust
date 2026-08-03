@@ -1,0 +1,13 @@
+[package]
+name = "common-kafka"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+common-web = { workspace = true }
+
+rdkafka = { workspace = true }
+log = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+futures = { workspace = true }

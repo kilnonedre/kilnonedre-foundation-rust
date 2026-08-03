@@ -1,0 +1,27 @@
+[package]
+name = "common-config"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+common-grpc = { workspace = true }
+common-type = { workspace = true }
+common-kafka = { workspace = true }
+common-ws = { workspace = true }
+
+env_logger = { workspace = true }
+log = { workspace = true }
+dotenvy = { workspace = true }
+utoipa = { workspace = true }
+serde = { workspace = true }
+actix-web = { workspace = true }
+utoipa-swagger-ui = { workspace = true }
+once_cell = { workspace = true }
+uuid = { workspace = true }
+tokio = { workspace = true }
+sea-orm = { workspace = true }
+sea-orm-migration = { workspace = true }
+local-ip-address = { workspace = true }
+internal-clients = { workspace = true }
+actix-cors = { workspace = true }
+redis = { workspace = true }

@@ -1,0 +1,13 @@
+[package]
+name = "common-web"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+log = { workspace = true }
+actix-web = { workspace = true }
+actix-cors = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+utoipa = { workspace = true }
+uuid = { workspace = true }

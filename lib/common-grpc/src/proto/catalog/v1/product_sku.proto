@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package catalog.v1;
+
+import "catalog/v1/product_spu.proto";
+
+service GrpcCatalogProductSkuService {
+  // 批量读取
+  rpc BatchRead(GrpcCatalogProductSkuServiceBatchReadRequest) returns (GrpcCatalogProductSkuServiceBatchReadResponse);
+}
+
+// 批量读取请求
+message GrpcCatalogProductSkuServiceBatchReadRequest {
+  // ID 列表
+  repeated string ids = 1;
+}
+
+// 批量读取响应
+message GrpcCatalogProductSkuServiceBatchReadResponse {
+  // 响应列表
+  repeated GrpcCatalogProductSkuServiceProductSkuResponse product_skus = 1;
+}
+
+// 信息
+message GrpcCatalogProductSkuServiceProductSkuResponse {
+  // ID
+  string id = 1;
+
+  // 商品变体
+  GrpcCatalogProductSpuServiceProductSpuResponse product_spu = 2;
+
+  // 单位
+  GrpcCatalogProductSkuUnit product_sku_unit = 3;
+
+  // 单位数量
+  int32 unit_quantity = 4;
+
+  // 是否为基础单位
+  bool is_base_unit = 5;
+
+  // 基础Sku ID
+  optional GrpcCatalogProductSkuServiceProductSkuResponse base_product_sku = 6;
+
+  // 市场价
+  string market_price = 7;
+
+  // 售价
+  string sale_price = 8;
+
+  // 是否可售卖
+  bool is_saleable = 9;
+
+  // 排序
+  int32 sort = 10;
+
+  // 备注
+  optional string remark = 11;
+
+  // 客户类型价
+  repeated GrpcCatalogProductSkuOrganizationTypePrice organization_type_prices = 12;
+}
+
+// 商品 SKU 单位
+message GrpcCatalogProductSkuUnit {
+  // ID
+  string id = 1;
+
+  // 名称
+  string name = 2;
+}
+
+// 商品 SKU 客户类型价
+message GrpcCatalogProductSkuOrganizationTypePrice {
+  // ID
+  string id = 1;
+
+  // 商品 Sku ID
+  string product_sku_id = 2;
+
+  // 客户类型 ID
+  string organization_type_id = 3;
+
+  // 价格
+  string price = 4;
+
+  // 排序
+  int32 sort = 5;
+}

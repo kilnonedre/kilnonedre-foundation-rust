@@ -1,0 +1,14 @@
+pub mod audit_diff_resp;
+pub mod catalog_model;
+pub mod common_audit_resp;
+pub mod common_record_resp;
+pub mod common_resp;
+pub mod crm_model;
+pub mod geo_model;
+pub mod logistics_model;
+pub mod operator_context;
+pub mod page_req;
+pub mod procurement_model;
+pub mod response_list_t;
+pub mod response_t;
+pub mod wms_model;

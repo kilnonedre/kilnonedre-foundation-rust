@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package geo.v1;
+
+import "common/v1/common.proto";
+
+service GrpcGeoLocationService {
+  // 创建定位
+  rpc Create(GrpcGeoLocationServiceCreateRequest) returns (GrpcGeoLocationServiceCreateResponse);
+
+  // 读取定位
+  rpc Read(GrpcGeoLocationServiceReadRequest) returns (GrpcGeoLocationServiceReadResponse);
+
+  // 批量读取定位
+  rpc BatchRead(GrpcGeoLocationServiceBatchReadRequest) returns (GrpcGeoLocationServiceBatchReadResponse);
+}
+
+// 创建定位请求
+message GrpcGeoLocationServiceCreateRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 省
+  optional string province = 2;
+
+  // 市
+  optional string city = 3;
+
+  // 区
+  optional string district = 4;
+
+  // 行政区编码
+  optional string ad_code = 5;
+
+  // 详细地址
+  string address = 6;
+
+  // 纬度
+  double latitude = 7;
+
+  // 经度
+  double longitude = 8;
+
+  // POI ID
+  optional string poi_id = 9;
+
+  // POI 名称
+  optional string poi_name = 10;
+
+  // 地图提供商
+  common.v1.GrpcMapProvider map_provider = 11;
+
+  // 原始响应
+  string raw_response = 12;
+}
+
+// 创建定位响应
+message GrpcGeoLocationServiceCreateResponse {
+  // 定位 ID
+  string id = 1;
+}
+
+// 批量读取定位请求
+message GrpcGeoLocationServiceBatchReadRequest {
+  // 定位 ID 列表
+  repeated string ids = 1;
+}
+
+// 批量读取定位响应
+message GrpcGeoLocationServiceBatchReadResponse {
+  // 定位列表
+  repeated GrpcGeoLocationServiceLocationResponse locations = 1;
+}
+
+// 读取定位请求
+message GrpcGeoLocationServiceReadRequest {
+  // 定位 ID 列表
+  string id = 1;
+}
+
+// 读取定位响应
+message GrpcGeoLocationServiceReadResponse {
+  // 定位列表
+  GrpcGeoLocationServiceLocationResponse location = 1;
+}
+
+// 定位信息
+message GrpcGeoLocationServiceLocationResponse {
+  // 定位 ID
+  string id = 1;
+
+  // 省
+  optional string province = 2;
+
+  // 市
+  optional string city = 3;
+
+  // 区
+  optional string district = 4;
+
+  // 行政区编码
+  optional string ad_code = 5;
+
+  // 详细地址
+  string address = 6;
+
+  // 纬度
+  double latitude = 7;
+
+  // 经度
+  double longitude = 8;
+
+  // POI ID
+  optional string poi_id = 9;
+
+  // POI 名称
+  optional string poi_name = 10;
+
+  // 地图提供商
+  common.v1.GrpcMapProvider map_provider = 11;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package crm.v1;
+
+service GrpcCrmMerchantService {
+  // 批量查询
+  rpc BatchRead(GrpcCrmMerchantServiceBatchReadRequest) returns (GrpcCrmMerchantServiceBatchReadResponse);
+}
+
+// 批量查询
+message GrpcCrmMerchantServiceBatchReadRequest {
+  // 标识列表
+  repeated string ids = 1;
+}
+
+// 批量查询响应
+message GrpcCrmMerchantServiceBatchReadResponse {
+  // 列表
+  repeated GrpcCrmMerchantServiceMerchantResponse merchants = 1;
+}
+
+// 信息
+message GrpcCrmMerchantServiceMerchantResponse {
+  // ID
+  string id = 1;
+
+  // 名称
+  string name = 2;
+
+  // 编码
+  string code = 3;
+}

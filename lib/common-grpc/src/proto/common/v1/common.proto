@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package common.v1;
+
+enum GrpcOperatorType {
+  // 默认值
+  GRPC_OPERATOR_TYPE_UNSPECIFIED = 0;
+  // 管理员
+  GRPC_OPERATOR_TYPE_ADMIN = 1;
+  // 商户
+  GRPC_OPERATOR_TYPE_SELLER = 2;
+  // 用户
+  GRPC_OPERATOR_TYPE_CONSUMER = 3;
+}
+
+enum GrpcPayMethod {
+  // 默认值
+  GRPC_PAY_METHOD_UNSPECIFIED = 0;
+  // 微信支付
+  GRPC_PAY_METHOD_WE_CHAT = 1;
+  // 钱包支付
+  GRPC_PAY_METHOD_WALLET = 2;
+  // 礼品卡支付
+  GRPC_PAY_METHOD_GIFT_CARD = 3;
+}
+
+enum GrpcMapProvider {
+  // 默认值
+  GRPC_MAP_PROVIDER_UNSPECIFIED = 0;
+
+  // 高德地图
+  GRPC_MAP_PROVIDER_AMAP = 1;
+
+  // 腾讯地图
+  GRPC_MAP_PROVIDER_TENCENT = 2;
+}
+
+enum GrpcPaymentBizType {
+  // 默认值
+  GRPC_PAYMENT_BIZ_TYPE_UNSPECIFIED = 0;
+  // 订单
+  GRPC_PAYMENT_BIZ_TYPE_ORDER = 1;
+  // 钱包
+  GRPC_PAYMENT_BIZ_TYPE_WALLET = 2;
+}
+
+message GrpcOperatorContext {
+  // 操作人 ID
+  string user_id = 1;
+
+  // 租户 ID
+  string merchant_id = 2;
+
+  // 身份类型
+  GrpcOperatorType type = 3;
+}

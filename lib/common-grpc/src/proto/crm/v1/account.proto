@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package crm.v1;
+
+import "common/v1/common.proto";
+
+service GrpcCrmAccountService {
+  rpc Read(GrpcCrmAccountServiceReadRequest) returns (GrpcCrmAccountServiceReadResponse);
+
+  rpc BatchRead(GrpcCrmAccountServiceBatchReadRequest) returns (GrpcCrmAccountServiceBatchReadResponse);
+}
+
+// 查询请求
+message GrpcCrmAccountServiceReadRequest {
+  GrpcCrmAccountServiceOperatorIdentity item = 1;
+}
+
+// 查询响应
+message GrpcCrmAccountServiceReadResponse {
+  GrpcCrmAccountServiceAccountResponse account = 1;
+}
+
+// 批量查询账号请求
+message GrpcCrmAccountServiceBatchReadRequest {
+  // 账号标识列表
+  repeated GrpcCrmAccountServiceOperatorIdentity items = 1;
+}
+
+// 账号标识
+message GrpcCrmAccountServiceOperatorIdentity {
+  // profile_id
+  string id = 1;
+
+  // 身份类型（必传）
+  common.v1.GrpcOperatorType type = 2;
+}
+
+// 批量查询账号响应
+message GrpcCrmAccountServiceBatchReadResponse {
+  // 账号列表
+  repeated GrpcCrmAccountServiceAccountResponse accounts = 1;
+}
+
+// 账号信息
+message GrpcCrmAccountServiceAccountResponse {
+  // 账号 ID
+  string id = 1;
+
+  // 用户资料 ID
+  string profile_id = 2;
+
+  // 用户名
+  string username = 3;
+
+  // 用户唯一标识
+  string handle = 4;
+
+  // 电话号码
+  optional string phone = 5;
+
+  // 邮箱
+  optional string email = 6;
+
+  // 头像
+  optional string avatar_id = 7;
+}

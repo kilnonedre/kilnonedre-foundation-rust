@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package procurement.v1;
+
+service GrpcProcurementPurchaserService {
+  rpc BatchRead(GrpcProcurementPurchaserServiceBatchReadRequest) returns (GrpcProcurementPurchaserServiceBatchReadResponse);
+}
+
+// 批量读取请求
+message GrpcProcurementPurchaserServiceBatchReadRequest {
+  // ID 列表
+  repeated string ids = 1;
+}
+
+// 批量读取响应
+message GrpcProcurementPurchaserServiceBatchReadResponse {
+  // 列表
+  repeated GrpcProcurementPurchaserServicePurchaserResponse purchasers = 1;
+}
+
+// 信息
+message GrpcProcurementPurchaserServicePurchaserResponse {
+  // 采购员 ID
+  string id = 1;
+
+  // 员工资料 ID
+  string seller_profile_id = 2;
+}

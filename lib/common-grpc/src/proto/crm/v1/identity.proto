@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package crm.v1;
+
+import "common/v1/common.proto";
+
+service GrpcCrmIdentityService {
+  // 验证身份
+  rpc Verify(GrpcCrmIdentityServiceVerifyRequest) returns (GrpcCrmIdentityServiceVerifyResponse);
+}
+
+// 验证身份请求
+message GrpcCrmIdentityServiceVerifyRequest {
+  // 身份类型（必传）
+  common.v1.GrpcOperatorType type = 1;
+
+  // 账号
+  string account = 2;
+
+  // 密码
+  string password = 3;
+
+  // 租户 ID
+  string merchant_id = 4;
+}
+
+// 验证身份响应
+message GrpcCrmIdentityServiceVerifyResponse {
+  // 用户 ID
+  string id = 1;
+}

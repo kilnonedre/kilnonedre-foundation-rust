@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package workflow.v1;
+
+import "common/v1/common.proto";
+
+service WorkflowProcessService {
+  // 启动流程
+  rpc Start(WorkflowProcessServiceStartRequest) returns (WorkflowProcessServiceStartResponse);
+
+  // 处理流程动作
+  rpc Action(WorkflowProcessServiceActionRequest) returns (WorkflowProcessServiceActionResponse);
+
+  // 查询流程列表
+  rpc List(WorkflowProcessServiceListRequest) returns (WorkflowProcessServiceListResponse);
+}
+
+// 启动流程请求
+message WorkflowProcessServiceStartRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 业务名称
+  string biz_name = 2;
+}
+
+// 启动流程响应
+message WorkflowProcessServiceStartResponse {
+  // 流程实例 ID
+  string instance_id = 1;
+}
+
+// 处理流程动作请求
+message WorkflowProcessServiceActionRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 业务名称
+  string biz_name = 2;
+
+  // 流程实例 ID
+  string instance_id = 3;
+
+  // 操作类型
+  WorkflowProcessServiceActionType action_type = 4;
+
+  // 操作意见
+  string comment = 5;
+
+  // 角色 ID
+  repeated string role_ids = 6;
+}
+
+// 处理流程动作响应
+message WorkflowProcessServiceActionResponse {
+  // 流程实例状态
+  string instance_status = 1;
+}
+
+// 流程动作类型
+enum WorkflowProcessServiceActionType {
+  WORKFLOW_PROCESS_SERVICE_ACTION_TYPE_UNSPECIFIED = 0;
+  WORKFLOW_PROCESS_SERVICE_ACTION_TYPE_APPROVE = 1;
+  WORKFLOW_PROCESS_SERVICE_ACTION_TYPE_REJECT = 2;
+  WORKFLOW_PROCESS_SERVICE_ACTION_TYPE_CANCEL = 3;
+}
+
+// 查询流程列表请求
+message WorkflowProcessServiceListRequest {
+  // 操作上下文
+  common.v1.GrpcOperatorContext operator_context = 1;
+
+  // 业务名称
+  string biz_name = 2;
+
+  // 当前用户角色 ID（用于查我的待办 / 我发起的 / 我处理的）
+  repeated string role_ids = 3;
+
+  // 页码，从 1 开始
+  uint64 page = 4;
+
+  // 每页数量
+  uint64 size = 5;
+}
+
+// 查询流程列表响应
+message WorkflowProcessServiceListResponse {
+  // 流程实例 ID 列表
+  repeated string instance_ids = 1;
+
+  // 总数
+  uint64 total = 2;
+
+  // 总页码
+  uint64 total_page = 3;
+
+  // 页码
+  uint64 page = 4;
+
+  // 每页数量
+  uint64 size = 5;
+}

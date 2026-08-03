@@ -1,0 +1,15 @@
+[package]
+name = "common-ws"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+common-type = { workspace = true }
+
+actix = { workspace = true }
+actix-web-actors = { workspace = true }
+uuid = { workspace = true }
+dashmap = { workspace = true }
+serde_json = { workspace = true }
+serde = { workspace = true }
+log = { workspace = true }

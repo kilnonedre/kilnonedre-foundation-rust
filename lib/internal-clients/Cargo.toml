@@ -1,0 +1,19 @@
+[package]
+name = "internal-clients"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+
+actix-web = { workspace = true }
+actix-cors = { workspace = true }
+actix-multipart = { workspace = true }
+
+uuid = { workspace = true }
+
+futures-util = { workspace = true }
+jsonwebtoken = { workspace = true }
