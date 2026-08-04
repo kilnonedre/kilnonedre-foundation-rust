@@ -16,6 +16,9 @@ pub enum OrderType {
 
     /// 入库单（IO，Inbound Order）
     IO,
+
+    /// 退款单（RF，Refund）
+    RF,
 }
 
 impl fmt::Display for OrderType {
@@ -24,6 +27,7 @@ impl fmt::Display for OrderType {
             Self::OD => "OD",
             Self::PO => "PO",
             Self::IO => "IO",
+            Self::RF => "RF",
         })
     }
 }

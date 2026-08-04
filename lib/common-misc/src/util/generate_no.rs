@@ -28,3 +28,7 @@ pub fn generate_purchase_order_no(operator_context: &OperatorContext) -> String 
 pub fn generate_inbound_order_no(operator_context: &OperatorContext) -> String {
     generate_no(&OrderType::IO, operator_context)
 }
+
+pub fn generate_refund_order_no(operator_context: &OperatorContext) -> String {
+    generate_no(&OrderType::RF, operator_context)
+}
