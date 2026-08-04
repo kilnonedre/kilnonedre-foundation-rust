@@ -1,12 +1,12 @@
 [package]
-name = "common-db"
+name = "kilnonedre-common-db"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
-common-type = { workspace = true }
-common-web = { workspace = true }
-common-config = { workspace = true }
+kilnonedre-common-type = { workspace = true }
+kilnonedre-common-web = { workspace = true }
+kilnonedre-common-config = { workspace = true }
 
 sea-orm = { workspace = true }
 tokio = { workspace = true }

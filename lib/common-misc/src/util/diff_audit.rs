@@ -1,4 +1,4 @@
-use common_type::{AuditDiffResp, AuditFieldChangeResp, HasAuditMeta};
+use kilnonedre_common_type::{AuditDiffResp, AuditFieldChangeResp, HasAuditMeta};
 
 pub struct AuditGetter<T> {
     pub field: &'static str,

@@ -1,4 +1,4 @@
-use common_config::env::DB_SCHEMA;
+use kilnonedre_common_config::env::DB_SCHEMA;
 use sea_orm::sea_query::{Alias, Expr, SimpleExpr};
 
 pub fn db_enum(name: &str) -> Alias {

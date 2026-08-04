@@ -1,6 +1,6 @@
 use std::time::Duration;
 
-use common_web::{util::error::svc_err_internal, ApiError};
+use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 use rdkafka::{
     producer::{FutureProducer, FutureRecord},
     ClientConfig,

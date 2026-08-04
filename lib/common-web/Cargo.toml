@@ -1,5 +1,5 @@
 [package]
-name = "common-web"
+name = "kilnonedre-common-web"
 version.workspace = true
 edition.workspace = true
 

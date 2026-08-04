@@ -1,4 +1,4 @@
-use common_web::ApiError;
+use kilnonedre_common_web::ApiError;
 use uuid::Uuid;
 
 use crate::util::string_to_uuid::svc_parse_uuid;

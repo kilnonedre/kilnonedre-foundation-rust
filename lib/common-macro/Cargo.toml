@@ -1,5 +1,5 @@
 [package]
-name = "common-macro"
+name = "kilnonedre-common-macro"
 edition.workspace = true
 version.workspace = true
 
@@ -7,7 +7,7 @@ version.workspace = true
 proc-macro = true
 
 [dependencies]
-common-type = { workspace = true }
+kilnonedre-common-type = { workspace = true }
 
 proc-macro2 = { workspace = true }
 syn = { workspace = true }

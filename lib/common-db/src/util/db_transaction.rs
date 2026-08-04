@@ -1,6 +1,6 @@
 use std::{future::Future, pin::Pin};
 
-use common_web::ApiError;
+use kilnonedre_common_web::ApiError;
 use sea_orm::{DatabaseConnection, DatabaseTransaction, TransactionTrait};
 
 pub async fn db_transaction<T, F>(db: &DatabaseConnection, f: F) -> Result<T, ApiError>

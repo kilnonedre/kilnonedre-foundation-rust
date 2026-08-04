@@ -1,5 +1,5 @@
-use common_grpc::util::error::grpc_err_internal_msg;
-use common_web::{util::error::svc_err_internal_msg, ApiError};
+use kilnonedre_common_grpc::util::error::grpc_err_internal_msg;
+use kilnonedre_common_web::{util::error::svc_err_internal_msg, ApiError};
 use rust_decimal::prelude::ToPrimitive;
 use rust_decimal::Decimal;
 use tonic::Status;

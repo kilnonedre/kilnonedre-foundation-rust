@@ -1,15 +1,15 @@
-use common_grpc::{
+use kilnonedre_common_grpc::{
     crm::{
         GrpcCrmConsumerProfileServiceCreateRequest, GrpcCrmConsumerProfileServiceDeleteRequest,
         GrpcCrmConsumerProfileServiceUpdateRequest,
     },
     GrpcCrmConsumerProfileClient,
 };
-use common_misc::util::{
+use kilnonedre_common_misc::util::{
     operator_context::operator_context_to_grpc, string_to_uuid::svc_parse_uuid,
 };
-use common_type::OperatorContext;
-use common_web::{util::error::svc_err_internal, ApiError};
+use kilnonedre_common_type::OperatorContext;
+use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 use uuid::Uuid;
 
 pub async fn create_consumer_profile(

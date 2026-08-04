@@ -2,7 +2,7 @@ use std::future::Future;
 
 use actix_cors::Cors;
 use actix_web::{dev::Server, web, App, HttpServer, Scope};
-use internal_clients::hook::token::preprocess::JwtAuth;
+use kilnonedre_internal_clients::hook::token::preprocess::JwtAuth;
 use sea_orm::DatabaseConnection;
 use sea_orm_migration::MigratorTrait;
 use utoipa::openapi::OpenApi;

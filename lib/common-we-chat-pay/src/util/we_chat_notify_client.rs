@@ -1,7 +1,9 @@
 use actix_web::HttpRequest;
 use base64::{engine::general_purpose, Engine};
-use common_config::env::we_chat::{WE_CHAT_PAY_API_V3_KEY, WE_CHAT_PAY_PLATFORM_PUBLIC_KEY_PATH};
-use common_web::{
+use kilnonedre_common_config::env::we_chat::{
+    WE_CHAT_PAY_API_V3_KEY, WE_CHAT_PAY_PLATFORM_PUBLIC_KEY_PATH,
+};
+use kilnonedre_common_web::{
     util::error::{svc_err_internal, svc_err_internal_msg},
     ApiError,
 };

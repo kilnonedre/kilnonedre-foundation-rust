@@ -1,4 +1,4 @@
-use common_type::OperatorType;
+use kilnonedre_common_type::OperatorType;
 use std::{sync::Arc, time::Instant};
 use uuid::Uuid;
 

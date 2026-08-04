@@ -1,10 +1,10 @@
 [package]
-name = "common-kafka"
+name = "kilnonedre-common-kafka"
 edition.workspace = true
 version.workspace = true
 
 [dependencies]
-common-web = { workspace = true }
+kilnonedre-common-web = { workspace = true }
 
 rdkafka = { workspace = true }
 log = { workspace = true }

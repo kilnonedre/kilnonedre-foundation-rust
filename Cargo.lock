@@ -857,182 +857,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "common-config"
-version = "0.1.0"
-dependencies = [
- "actix-cors",
- "actix-web",
- "common-grpc",
- "common-kafka",
- "common-type",
- "common-ws",
- "dotenvy",
- "env_logger",
- "internal-clients",
- "local-ip-address",
- "log",
- "once_cell",
- "redis",
- "sea-orm",
- "sea-orm-migration",
- "serde",
- "tokio",
- "utoipa",
- "utoipa-swagger-ui",
- "uuid",
-]
-
-[[package]]
-name = "common-db"
-version = "0.1.0"
-dependencies = [
- "common-config",
- "common-type",
- "common-web",
- "log",
- "sea-orm",
- "tokio",
-]
-
-[[package]]
-name = "common-grpc"
-version = "0.1.0"
-dependencies = [
- "log",
- "once_cell",
- "prost",
- "sea-orm",
- "tokio",
- "tonic",
- "tonic-prost",
- "tonic-prost-build",
- "uuid",
-]
-
-[[package]]
-name = "common-kafka"
-version = "0.1.0"
-dependencies = [
- "common-web",
- "futures",
- "log",
- "rdkafka",
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "common-macro"
-version = "0.1.0"
-dependencies = [
- "common-type",
- "proc-macro2",
- "quote",
- "syn 2.0.119",
-]
-
-[[package]]
-name = "common-misc"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "chrono",
- "common-config",
- "common-grpc",
- "common-type",
- "common-web",
- "local-ip-address",
- "log",
- "once_cell",
- "rand 0.9.5",
- "regex",
- "rust_decimal",
- "sea-orm",
- "serde",
- "serde_json",
- "tokio",
- "tokio-cron-scheduler",
- "tonic",
- "uuid",
-]
-
-[[package]]
-name = "common-type"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "common-grpc",
- "common-web",
- "rust_decimal",
- "sea-orm",
- "serde",
- "tonic",
- "utoipa",
- "uuid",
-]
-
-[[package]]
-name = "common-util"
-version = "0.1.0"
-dependencies = [
- "common-grpc",
- "common-misc",
- "common-type",
- "common-web",
- "log",
- "rust_decimal",
- "sea-orm",
- "uuid",
-]
-
-[[package]]
-name = "common-we-chat-pay"
-version = "0.1.0"
-dependencies = [
- "actix-web",
- "base64",
- "chrono",
- "common-config",
- "common-misc",
- "common-web",
- "openssl",
- "rand 0.9.5",
- "reqwest",
- "rust_decimal",
- "sea-orm",
- "serde",
- "serde_json",
- "utoipa",
-]
-
-[[package]]
-name = "common-web"
-version = "0.1.0"
-dependencies = [
- "actix-cors",
- "actix-web",
- "log",
- "serde",
- "thiserror 1.0.69",
- "utoipa",
- "uuid",
-]
-
-[[package]]
-name = "common-ws"
-version = "0.1.0"
-dependencies = [
- "actix",
- "actix-web-actors",
- "common-type",
- "dashmap",
- "log",
- "serde",
- "serde_json",
- "uuid",
-]
-
-[[package]]
 name = "const-oid"
 version = "0.9.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2207,22 +2031,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "internal-clients"
-version = "0.1.0"
-dependencies = [
- "actix-cors",
- "actix-multipart",
- "actix-web",
- "anyhow",
- "futures-util",
- "jsonwebtoken",
- "reqwest",
- "serde",
- "serde_json",
- "uuid",
-]
-
-[[package]]
 name = "ipnet"
 version = "2.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2325,8 +2133,200 @@ dependencies = [
 ]
 
 [[package]]
+name = "kilnonedre-common-config"
+version = "0.1.0"
+dependencies = [
+ "actix-cors",
+ "actix-web",
+ "dotenvy",
+ "env_logger",
+ "kilnonedre-common-grpc",
+ "kilnonedre-common-kafka",
+ "kilnonedre-common-type",
+ "kilnonedre-common-ws",
+ "kilnonedre-internal-clients",
+ "local-ip-address",
+ "log",
+ "once_cell",
+ "redis",
+ "sea-orm",
+ "sea-orm-migration",
+ "serde",
+ "tokio",
+ "utoipa",
+ "utoipa-swagger-ui",
+ "uuid",
+]
+
+[[package]]
+name = "kilnonedre-common-db"
+version = "0.1.0"
+dependencies = [
+ "kilnonedre-common-config",
+ "kilnonedre-common-type",
+ "kilnonedre-common-web",
+ "log",
+ "sea-orm",
+ "tokio",
+]
+
+[[package]]
+name = "kilnonedre-common-grpc"
+version = "0.1.0"
+dependencies = [
+ "log",
+ "once_cell",
+ "prost",
+ "sea-orm",
+ "tokio",
+ "tonic",
+ "tonic-prost",
+ "tonic-prost-build",
+ "uuid",
+]
+
+[[package]]
+name = "kilnonedre-common-kafka"
+version = "0.1.0"
+dependencies = [
+ "futures",
+ "kilnonedre-common-web",
+ "log",
+ "rdkafka",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "kilnonedre-common-macro"
+version = "0.1.0"
+dependencies = [
+ "kilnonedre-common-type",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.119",
+]
+
+[[package]]
+name = "kilnonedre-common-misc"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "chrono",
+ "kilnonedre-common-config",
+ "kilnonedre-common-grpc",
+ "kilnonedre-common-type",
+ "kilnonedre-common-web",
+ "local-ip-address",
+ "log",
+ "once_cell",
+ "rand 0.9.5",
+ "regex",
+ "rust_decimal",
+ "sea-orm",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tokio-cron-scheduler",
+ "tonic",
+ "uuid",
+]
+
+[[package]]
+name = "kilnonedre-common-type"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "kilnonedre-common-grpc",
+ "kilnonedre-common-web",
+ "rust_decimal",
+ "sea-orm",
+ "serde",
+ "tonic",
+ "utoipa",
+ "uuid",
+]
+
+[[package]]
+name = "kilnonedre-common-util"
+version = "0.1.0"
+dependencies = [
+ "kilnonedre-common-grpc",
+ "kilnonedre-common-misc",
+ "kilnonedre-common-type",
+ "kilnonedre-common-web",
+ "log",
+ "rust_decimal",
+ "sea-orm",
+ "uuid",
+]
+
+[[package]]
+name = "kilnonedre-common-we-chat-pay"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "base64",
+ "chrono",
+ "kilnonedre-common-config",
+ "kilnonedre-common-misc",
+ "kilnonedre-common-web",
+ "openssl",
+ "rand 0.9.5",
+ "reqwest",
+ "rust_decimal",
+ "sea-orm",
+ "serde",
+ "serde_json",
+ "utoipa",
+]
+
+[[package]]
+name = "kilnonedre-common-web"
+version = "0.1.0"
+dependencies = [
+ "actix-cors",
+ "actix-web",
+ "log",
+ "serde",
+ "thiserror 1.0.69",
+ "utoipa",
+ "uuid",
+]
+
+[[package]]
+name = "kilnonedre-common-ws"
+version = "0.1.0"
+dependencies = [
+ "actix",
+ "actix-web-actors",
+ "dashmap",
+ "kilnonedre-common-type",
+ "log",
+ "serde",
+ "serde_json",
+ "uuid",
+]
+
+[[package]]
 name = "kilnonedre-foundation-rust"
 version = "0.1.0"
+
+[[package]]
+name = "kilnonedre-internal-clients"
+version = "0.1.0"
+dependencies = [
+ "actix-cors",
+ "actix-multipart",
+ "actix-web",
+ "anyhow",
+ "futures-util",
+ "jsonwebtoken",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "uuid",
+]
 
 [[package]]
 name = "language-tags"

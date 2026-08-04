@@ -1,4 +1,4 @@
-use common_type::{OperatorContext, OperatorType};
+use kilnonedre_common_type::{OperatorContext, OperatorType};
 use once_cell::sync::Lazy;
 
 use crate::env::SYS_ID;

@@ -1,16 +1,16 @@
 [package]
-name = "common-type"
+name = "kilnonedre-common-type"
 edition.workspace = true
 version.workspace = true
 
 [dependencies]
-common-grpc = { workspace = true }
+kilnonedre-common-grpc = { workspace = true }
+kilnonedre-common-web = { workspace = true }
 
 serde = { workspace = true }
 utoipa = { workspace = true }
 sea-orm = { workspace = true }
 actix-web = { workspace = true }
-common-web = { workspace = true }
 rust_decimal = { workspace = true }
 tonic = { workspace = true }
 uuid = { workspace = true }

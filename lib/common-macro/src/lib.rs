@@ -25,9 +25,9 @@ pub fn derive_audit_meta(input: TokenStream) -> TokenStream {
     }
 
     quote! {
-        impl common_type::HasAuditMeta for #ident {
+        impl kilnonedre_common_type::HasAuditMeta for #ident {
             #[inline]
-            fn meta(&self) -> &common_type::CommonAuditResp {
+            fn meta(&self) -> &kilnonedre_common_type::CommonAuditResp {
                 &self.meta
             }
         }

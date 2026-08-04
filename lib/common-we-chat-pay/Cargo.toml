@@ -1,12 +1,12 @@
 [package]
-name = "common-we-chat-pay"
+name = "kilnonedre-common-we-chat-pay"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
-common-config = { workspace = true }
-common-web = { workspace = true }
-common-misc = { workspace = true }
+kilnonedre-common-config = { workspace = true }
+kilnonedre-common-web = { workspace = true }
+kilnonedre-common-misc = { workspace = true }
 
 sea-orm = { workspace = true }
 utoipa = { workspace = true }

@@ -3,7 +3,7 @@ use std::time::Instant;
 
 use actix::{Actor, ActorContext, AsyncContext, StreamHandler};
 use actix_web_actors::ws;
-use common_type::OperatorType;
+use kilnonedre_common_type::OperatorType;
 use uuid::Uuid;
 
 use crate::{

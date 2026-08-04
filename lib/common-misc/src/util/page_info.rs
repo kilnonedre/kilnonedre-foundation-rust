@@ -1,5 +1,5 @@
-use common_type::{page_req::PageReq, PageInfo};
-use common_web::{util::error::svc_err_internal, ApiError};
+use kilnonedre_common_type::{page_req::PageReq, PageInfo};
+use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 use sea_orm::{ConnectionTrait, EntityTrait, FromQueryResult, PaginatorTrait, Select};
 
 pub async fn page_info<E, M, C>(

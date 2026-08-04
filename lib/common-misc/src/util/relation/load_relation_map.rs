@@ -4,7 +4,7 @@ use std::{
     hash::Hash,
 };
 
-use common_web::ApiError;
+use kilnonedre_common_web::ApiError;
 use uuid::Uuid;
 
 use crate::util::vec_to_map::vec_to_map;

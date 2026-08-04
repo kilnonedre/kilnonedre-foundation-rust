@@ -1,7 +1,7 @@
 use std::{collections::HashMap, sync::Arc};
 
-use common_kafka::producer::KafkaProducer;
-use common_ws::hub::WsHub;
+use kilnonedre_common_kafka::producer::KafkaProducer;
+use kilnonedre_common_ws::hub::WsHub;
 // use redis::Client as RedisClient;
 
 pub enum AppData {

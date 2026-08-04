@@ -1,5 +1,5 @@
-use common_grpc::{common::GrpcOperatorContext, util::error::grpc_err_internal_msg};
-use common_type::{grpc_to_operator_type, OperatorContext};
+use kilnonedre_common_grpc::{common::GrpcOperatorContext, util::error::grpc_err_internal_msg};
+use kilnonedre_common_type::{grpc_to_operator_type, OperatorContext};
 use tonic::Status;
 
 use crate::util::string_to_uuid::grpc_parse_uuid;

@@ -1,6 +1,6 @@
 use actix::Recipient;
-use common_type::OperatorType;
 use dashmap::DashMap;
+use kilnonedre_common_type::OperatorType;
 use uuid::Uuid;
 
 use crate::r#type::{

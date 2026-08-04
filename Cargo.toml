@@ -25,19 +25,19 @@ edition = "2021"
 version = "0.1.0"
 
 [workspace.dependencies]
-common-config = { path = "lib/common-config" }
-common-db = { path = "lib/common-db" }
-common-web = { path = "lib/common-web" }
-common-type = { path = "lib/common-type" }
-common-grpc = { path = "lib/common-grpc" }
-common-misc = { path = "lib/common-misc" }
-common-util = { path = "lib/common-util" }
-common-kafka = { path = "lib/common-kafka" }
-common-ws = { path = "lib/common-ws" }
-common-macro = { path = "lib/common-macro" }
-common-we-chat-pay = { path = "lib/common-we-chat-pay" }
+kilnonedre-common-config = { path = "lib/common-config" }
+kilnonedre-common-db = { path = "lib/common-db" }
+kilnonedre-common-web = { path = "lib/common-web" }
+kilnonedre-common-type = { path = "lib/common-type" }
+kilnonedre-common-grpc = { path = "lib/common-grpc" }
+kilnonedre-common-misc = { path = "lib/common-misc" }
+kilnonedre-common-util = { path = "lib/common-util" }
+kilnonedre-common-kafka = { path = "lib/common-kafka" }
+kilnonedre-common-ws = { path = "lib/common-ws" }
+kilnonedre-common-macro = { path = "lib/common-macro" }
+kilnonedre-common-we-chat-pay = { path = "lib/common-we-chat-pay" }
 
-internal-clients = { path = "lib/internal-clients" }
+kilnonedre-internal-clients = { path = "lib/internal-clients" }
 
 actix = "0.13.5"
 actix-web = "4"

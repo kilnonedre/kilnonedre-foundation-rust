@@ -1,5 +1,5 @@
-use common_grpc::util::error::grpc_err_internal;
-use common_web::{util::error::svc_err_internal, ApiError};
+use kilnonedre_common_grpc::util::error::grpc_err_internal;
+use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 use tonic::Status;
 use uuid::Uuid;
 

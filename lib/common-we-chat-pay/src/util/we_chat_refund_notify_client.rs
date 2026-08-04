@@ -1,5 +1,5 @@
 use actix_web::HttpRequest;
-use common_web::{util::error::svc_err_bad_request_msg, ApiError};
+use kilnonedre_common_web::{util::error::svc_err_bad_request_msg, ApiError};
 
 use crate::{
     r#type::model::we_chat_pay::WeChatPayNotifyReq,

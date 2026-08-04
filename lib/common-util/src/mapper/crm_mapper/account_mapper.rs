@@ -1,7 +1,7 @@
-use common_grpc::crm::GrpcCrmAccountServiceAccountResponse;
-use common_misc::util::string_to_uuid::{svc_parse_uuid, svc_parse_uuid_opt};
-use common_type::{CrmAccountModel, CrmAggregateAccountModel};
-use common_web::ApiError;
+use kilnonedre_common_grpc::crm::GrpcCrmAccountServiceAccountResponse;
+use kilnonedre_common_misc::util::string_to_uuid::{svc_parse_uuid, svc_parse_uuid_opt};
+use kilnonedre_common_type::{CrmAccountModel, CrmAggregateAccountModel};
+use kilnonedre_common_web::ApiError;
 
 pub fn grpc_to_model(
     grpc_model: GrpcCrmAccountServiceAccountResponse,

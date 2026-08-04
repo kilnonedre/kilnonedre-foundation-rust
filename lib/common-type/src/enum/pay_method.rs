@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
-use common_grpc::{common::GrpcPayMethod, util::error::grpc_err_internal_msg};
-use common_web::{util::error::svc_err_internal_msg, ApiError};
+use kilnonedre_common_grpc::{common::GrpcPayMethod, util::error::grpc_err_internal_msg};
+use kilnonedre_common_web::{util::error::svc_err_internal_msg, ApiError};
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
 use tonic::Status;

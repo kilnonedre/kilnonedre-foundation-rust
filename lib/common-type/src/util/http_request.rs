@@ -1,5 +1,5 @@
 use actix_web::{http::header, HttpRequest};
-use common_web::{util::error::svc_err_internal_msg, ApiError};
+use kilnonedre_common_web::{util::error::svc_err_internal_msg, ApiError};
 use sea_orm::prelude::Uuid;
 
 use crate::{OperatorContext, OperatorType};

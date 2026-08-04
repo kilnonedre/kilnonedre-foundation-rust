@@ -1,4 +1,4 @@
-use common_grpc::{
+use kilnonedre_common_grpc::{
     GrpcCrmAccountClient, GrpcCrmConsumerProfileClient, GrpcCrmIdentityClient,
     GrpcCrmMerchantClient, GrpcGeoLocationClient, GrpcLogisticsRouteClient,
     GrpcProcurementPurchaserClient, GrpcProcurementSupplierClient, GrpcWmsWarehouseClient,

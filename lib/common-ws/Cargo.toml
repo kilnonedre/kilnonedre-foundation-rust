@@ -1,10 +1,10 @@
 [package]
-name = "common-ws"
+name = "kilnonedre-common-ws"
 edition.workspace = true
 version.workspace = true
 
 [dependencies]
-common-type = { workspace = true }
+kilnonedre-common-type = { workspace = true }
 
 actix = { workspace = true }
 actix-web-actors = { workspace = true }

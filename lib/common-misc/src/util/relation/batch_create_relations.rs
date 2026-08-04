@@ -1,6 +1,6 @@
 use std::future::Future;
 
-use common_web::ApiError;
+use kilnonedre_common_web::ApiError;
 
 pub async fn batch_create_relations<TargetId, Req, Fut>(
     target_ids: &Vec<TargetId>,

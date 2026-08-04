@@ -1,7 +1,7 @@
-use common_grpc::geo::GrpcGeoLocationServiceLocationResponse;
-use common_misc::util::string_to_uuid::svc_parse_uuid;
-use common_type::{svc_to_map_provider, GeoLocationModel, GeoLocationResp};
-use common_web::ApiError;
+use kilnonedre_common_grpc::geo::GrpcGeoLocationServiceLocationResponse;
+use kilnonedre_common_misc::util::string_to_uuid::svc_parse_uuid;
+use kilnonedre_common_type::{svc_to_map_provider, GeoLocationModel, GeoLocationResp};
+use kilnonedre_common_web::ApiError;
 
 pub fn grpc_to_model(
     grpc_model: GrpcGeoLocationServiceLocationResponse,

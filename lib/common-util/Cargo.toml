@@ -1,13 +1,13 @@
 [package]
-name = "common-util"
+name = "kilnonedre-common-util"
 edition.workspace = true
 version.workspace = true
 
 [dependencies]
-common-grpc = { workspace = true }
-common-type = { workspace = true }
-common-web = { workspace = true }
-common-misc = { workspace = true }
+kilnonedre-common-grpc = { workspace = true }
+kilnonedre-common-type = { workspace = true }
+kilnonedre-common-web = { workspace = true }
+kilnonedre-common-misc = { workspace = true }
 
 uuid = { workspace = true }
 log = { workspace = true }
