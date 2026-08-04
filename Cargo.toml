@@ -16,6 +16,7 @@ members = [
     "lib/common-kafka",
     "lib/common-ws",
     "lib/common-macro",
+    "lib/common-we-chat-pay",
 ]
 resolver = "2"
 
@@ -34,6 +35,7 @@ common-util = { path = "lib/common-util" }
 common-kafka = { path = "lib/common-kafka" }
 common-ws = { path = "lib/common-ws" }
 common-macro = { path = "lib/common-macro" }
+common-we-chat-pay = { path = "lib/common-we-chat-pay" }
 
 internal-clients = { path = "lib/internal-clients" }
 

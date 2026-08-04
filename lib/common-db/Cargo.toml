@@ -4,9 +4,10 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-sea-orm = { workspace = true }
-tokio = { workspace = true }
 common-type = { workspace = true }
 common-web = { workspace = true }
 common-config = { workspace = true }
+
+sea-orm = { workspace = true }
+tokio = { workspace = true }
 log = { workspace = true }

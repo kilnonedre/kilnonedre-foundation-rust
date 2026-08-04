@@ -986,6 +986,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "common-we-chat-pay"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "base64",
+ "chrono",
+ "common-config",
+ "common-misc",
+ "common-web",
+ "openssl",
+ "rand 0.9.5",
+ "reqwest",
+ "rust_decimal",
+ "sea-orm",
+ "serde",
+ "serde_json",
+ "utoipa",
+]
+
+[[package]]
 name = "common-web"
 version = "0.1.0"
 dependencies = [
