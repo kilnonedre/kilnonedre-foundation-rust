@@ -11,6 +11,7 @@ pub mod regex;
 pub mod relation;
 pub mod schedule;
 pub mod set_to_vec;
+pub mod string_to_date;
 pub mod string_to_decimal;
 pub mod string_to_json;
 pub mod string_to_uuid;
