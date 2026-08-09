@@ -4,6 +4,11 @@ use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 use sea_orm::prelude::DateTimeWithTimeZone;
 use tonic::Status;
 
+/// 格式化 DateTimeWithTimeZone
+pub fn format_datetime(value: &DateTimeWithTimeZone) -> String {
+    value.to_rfc3339()
+}
+
 /// 解析 DateTimeWithTimeZone
 pub fn svc_parse_datetime(s: &str) -> Result<DateTimeWithTimeZone, ApiError> {
     DateTime::<FixedOffset>::parse_from_rfc3339(s)
