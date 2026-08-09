@@ -4,8 +4,12 @@ use kilnonedre_common_grpc::{
     crm::{GrpcCrmMerchantServiceBatchReadRequest, GrpcCrmMerchantServiceMerchantResponse},
     GrpcCrmMerchantClient,
 };
-use kilnonedre_common_misc::util::{set_to_vec::uuid_set_to_string_vec, vec_to_map::try_vec_to_map_by};
-use kilnonedre_common_type::{CrmAggregateMerchantModel, CrmMerchantModel};
+use kilnonedre_common_misc::util::{
+    set_to_vec::uuid_set_to_string_vec, vec_to_map::try_vec_to_map_by,
+};
+use kilnonedre_common_type::{
+    CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel,
+};
 use uuid::Uuid;
 
 use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
@@ -31,6 +35,19 @@ pub async fn list_merchant_aggregate_as_map(
 
     let merchant_map =
         try_vec_to_map_by(merchants, merchant_mapper::grpc_to_aggregate, |merchant| {
+            merchant.id
+        })?;
+
+    Ok(merchant_map)
+}
+
+pub async fn list_merchant_composite_as_map(
+    id_set: HashSet<Uuid>,
+) -> Result<HashMap<Uuid, CrmCompositeMerchantModel>, ApiError> {
+    let merchants = batch_read(id_set).await?;
+
+    let merchant_map =
+        try_vec_to_map_by(merchants, merchant_mapper::grpc_to_composite, |merchant| {
             merchant.id
         })?;
 

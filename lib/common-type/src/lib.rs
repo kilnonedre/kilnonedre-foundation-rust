@@ -17,9 +17,9 @@ pub use model::{
     common_record_resp::{CommonBaseRecordResp, CommonRecordResp},
     common_resp::{CommonBaseResp, CommonResp},
     crm_model::{
-        account_model::{CrmAccountModel, CrmAggregateAccountModel},
-        merchant_model::{CrmAggregateMerchantModel, CrmMerchantModel},
-        role_model::{CrmAggregateRoleModel, CrmRoleModel},
+        account_model::{CrmAccountModel, CrmAggregateAccountModel, CrmCompositeAccountModel},
+        merchant_model::{CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel},
+        role_model::{CrmAggregateRoleModel, CrmCompositeRoleModel, CrmRoleModel},
     },
     geo_model::location_model::{GeoLocationModel, GeoLocationReq, GeoLocationResp},
     operator_context::*,

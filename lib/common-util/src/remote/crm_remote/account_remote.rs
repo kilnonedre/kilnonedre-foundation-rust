@@ -8,7 +8,7 @@ use kilnonedre_common_grpc::{
     GrpcCrmAccountClient,
 };
 use kilnonedre_common_misc::util::{set_to_vec::set_to_vec, vec_to_map::try_vec_to_map_by};
-use kilnonedre_common_type::{CrmAccountModel, CrmAggregateAccountModel};
+use kilnonedre_common_type::{CrmAccountModel, CrmAggregateAccountModel, CrmCompositeAccountModel};
 use uuid::Uuid;
 
 use kilnonedre_common_web::{
@@ -62,6 +62,18 @@ pub async fn list_account_aggregate_as_map(
     let accounts = batch_read(profile_payload_set).await?;
 
     let account_map = try_vec_to_map_by(accounts, account_mapper::grpc_to_aggregate, |account| {
+        account.profile_id
+    })?;
+
+    Ok(account_map)
+}
+
+pub async fn list_account_composite_as_map(
+    profile_payload_set: HashSet<GrpcCrmAccountServiceOperatorIdentity>,
+) -> Result<HashMap<Uuid, CrmCompositeAccountModel>, ApiError> {
+    let accounts = batch_read(profile_payload_set).await?;
+
+    let account_map = try_vec_to_map_by(accounts, account_mapper::grpc_to_composite, |account| {
         account.profile_id
     })?;
 
