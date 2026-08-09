@@ -1,4 +1,5 @@
 pub mod amount;
+pub mod batch_read_to_map;
 pub mod collect_ids;
 pub mod diff_audit;
 pub mod fetch_page;
