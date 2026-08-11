@@ -50,6 +50,12 @@ impl ApiError {
     }
 }
 
+impl From<ApiError> for std::io::Error {
+    fn from(err: ApiError) -> Self {
+        std::io::Error::other(err.to_string())
+    }
+}
+
 impl ResponseError for ApiError {
     fn status_code(&self) -> StatusCode {
         self.http_code()
