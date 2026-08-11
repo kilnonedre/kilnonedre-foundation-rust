@@ -13,3 +13,4 @@ uuid = { workspace = true }
 log = { workspace = true }
 sea-orm = { workspace = true }
 rust_decimal = { workspace = true }
+tokio-cron-scheduler = { workspace = true }
