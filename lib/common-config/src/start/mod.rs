@@ -7,8 +7,6 @@ use sea_orm::DatabaseConnection;
 use sea_orm_migration::MigratorTrait;
 use utoipa::openapi::OpenApi;
 
-// use migration_common::Migrator;
-
 use crate::{
     configure,
     env::{ACCESS_SECRET, APP_PORT, GRPC_PORT, LOG_LEVEL},
@@ -37,12 +35,8 @@ pub async fn init_database<M>() -> DatabaseConnection
 where
     M: MigratorTrait,
 {
-    // let db_public = init_public_db().await;
-    // Migrator::up(&db_public, None)
-    //     .await
-    //     .expect("执行公共数据库迁移失败");
-
     let db = init_database::init_db_with_schema().await;
+
     M::up(&db, None).await.expect("执行业务数据库迁移失败");
 
     db
@@ -54,6 +48,8 @@ pub async fn start_service_with_grpc<F, Fut>(
     build_api_route: fn() -> Scope,
     start_grpc_service: F,
     app_data_map: AppDataMap,
+    public_prefixes: Vec<&'static str>,
+    optional_auth_prefixes: Vec<&'static str>,
 ) -> std::io::Result<()>
 where
     F: FnOnce(DatabaseConnection, String) -> Fut + Send + 'static,
@@ -62,7 +58,15 @@ where
     start_info::print_startup_info(*APP_PORT, *GRPC_PORT);
 
     let grpc_server = start_grpc_server(db.clone(), start_grpc_service);
-    let http_server = build_http_server(db, openapi, build_api_route, app_data_map)?;
+
+    let http_server = build_http_server(
+        db,
+        openapi,
+        build_api_route,
+        app_data_map,
+        public_prefixes,
+        optional_auth_prefixes,
+    )?;
 
     tokio::select! {
         _ = grpc_server => {
@@ -82,10 +86,20 @@ pub async fn start_service(
     openapi: OpenApi,
     build_api_route: fn() -> Scope,
     app_data_map: AppDataMap,
+    public_prefixes: Vec<&'static str>,
+    optional_auth_prefixes: Vec<&'static str>,
 ) -> std::io::Result<()> {
     start_info::print_startup_info(*APP_PORT, *GRPC_PORT);
 
-    build_http_server(db, openapi, build_api_route, app_data_map)?.await?;
+    build_http_server(
+        db,
+        openapi,
+        build_api_route,
+        app_data_map,
+        public_prefixes,
+        optional_auth_prefixes,
+    )?
+    .await?;
 
     Ok(())
 }
@@ -110,6 +124,8 @@ fn build_http_server(
     openapi: OpenApi,
     build_api_route: fn() -> Scope,
     app_data_map: AppDataMap,
+    public_prefixes: Vec<&'static str>,
+    optional_auth_prefixes: Vec<&'static str>,
 ) -> std::io::Result<Server> {
     let db_data = web::Data::new(db);
 
@@ -125,7 +141,11 @@ fn build_http_server(
 
     let server = HttpServer::new(move || {
         let mut app = App::new()
-            .wrap(JwtAuth::new(ACCESS_SECRET.clone()))
+            .wrap(JwtAuth::new(
+                ACCESS_SECRET.clone(),
+                public_prefixes.clone(),
+                optional_auth_prefixes.clone(),
+            ))
             .wrap(
                 Cors::default()
                     .allow_any_origin()

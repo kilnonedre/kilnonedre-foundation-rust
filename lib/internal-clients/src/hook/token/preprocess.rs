@@ -22,29 +22,38 @@ pub struct JwtAuth {
 }
 
 impl JwtAuth {
-    pub fn new(secret: impl Into<String>) -> Self {
+    pub fn new(
+        secret: impl Into<String>,
+        public_prefixes: Vec<&'static str>,
+        optional_auth_prefixes: Vec<&'static str>,
+    ) -> Self {
+        let mut default_public_prefixes = vec![
+            "/login",
+            "/health",
+            "/api/v1/login",
+            "/api/v1/we-chat/login",
+            "/api/v1/access-token/refresh",
+            "/api/v1/merchants/code",
+            "/api/v1/we-chat-pay/notify",
+            "/api/v1/we-chat-refund/notify",
+            "/api/v1/objects",
+            "/api/v1/ws",
+        ];
+
+        let mut default_optional_auth_prefixes = vec![
+            "/api/v1/product-carousels",
+            "/api/v1/products/list",
+            "/api/v1/products/",
+            "/api/v1/categories",
+        ];
+
+        default_public_prefixes.extend(public_prefixes);
+        default_optional_auth_prefixes.extend(optional_auth_prefixes);
+
         Self {
             secret: secret.into(),
-
-            public_prefixes: vec![
-                "/login",
-                "/health",
-                "/api/v1/login",
-                "/api/v1/we-chat/login",
-                "/api/v1/access-token/refresh",
-                "/api/v1/merchants/code",
-                "/api/v1/we-chat-pay/notify",
-                "/api/v1/we-chat-refund/notify",
-                "/api/v1/objects",
-                "/api/v1/ws",
-            ],
-
-            optional_auth_prefixes: vec![
-                "/api/v1/product-carousels",
-                "/api/v1/products/list",
-                "/api/v1/products/",
-                "/api/v1/categories",
-            ],
+            public_prefixes: default_public_prefixes,
+            optional_auth_prefixes: default_optional_auth_prefixes,
         }
     }
 }
