@@ -6,14 +6,6 @@ pub use client::{
         identity::GrpcCrmIdentityClient, merchant::GrpcCrmMerchantClient,
     },
     geo::location::GrpcGeoLocationClient,
-    logistics::{
-        area::GrpcLogisticsAreaClient, car::GrpcLogisticsCarClient,
-        driver::GrpcLogisticsDriverClient, route::GrpcLogisticsRouteClient,
-    },
-    procurement::{
-        purchaser::GrpcProcurementPurchaserClient, supplier::GrpcProcurementSupplierClient,
-    },
-    wms::warehouse::GrpcWmsWarehouseClient,
     workflow::process::WorkflowProcessGrpcClient,
 };
 
@@ -43,41 +35,9 @@ pub mod workflow {
     pub use v1::*;
 }
 
-pub mod catalog {
-    pub mod v1 {
-        tonic::include_proto!("catalog.v1");
-    }
-
-    pub use v1::*;
-}
-
 pub mod geo {
     pub mod v1 {
         tonic::include_proto!("geo.v1");
-    }
-
-    pub use v1::*;
-}
-
-pub mod logistics {
-    pub mod v1 {
-        tonic::include_proto!("logistics.v1");
-    }
-
-    pub use v1::*;
-}
-
-pub mod procurement {
-    pub mod v1 {
-        tonic::include_proto!("procurement.v1");
-    }
-
-    pub use v1::*;
-}
-
-pub mod wms {
-    pub mod v1 {
-        tonic::include_proto!("wms.v1");
     }
 
     pub use v1::*;

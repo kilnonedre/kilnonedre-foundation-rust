@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package geo.v1;
+
+enum GrpcMapProvider {
+  // 默认值
+  GRPC_MAP_PROVIDER_UNSPECIFIED = 0;
+
+  // 高德地图
+  GRPC_MAP_PROVIDER_AMAP = 1;
+
+  // 腾讯地图
+  GRPC_MAP_PROVIDER_TENCENT = 2;
+}

@@ -3,6 +3,7 @@ syntax = "proto3";
 package geo.v1;
 
 import "common/v1/common.proto";
+import "geo/v1/common.proto";
 
 service GrpcGeoLocationService {
   // 创建定位
@@ -48,7 +49,7 @@ message GrpcGeoLocationServiceCreateRequest {
   optional string poi_name = 10;
 
   // 地图提供商
-  common.v1.GrpcMapProvider map_provider = 11;
+  GrpcMapProvider map_provider = 11;
 
   // 原始响应
   string raw_response = 12;
@@ -117,5 +118,5 @@ message GrpcGeoLocationServiceLocationResponse {
   optional string poi_name = 10;
 
   // 地图提供商
-  common.v1.GrpcMapProvider map_provider = 11;
+  GrpcMapProvider map_provider = 11;
 }

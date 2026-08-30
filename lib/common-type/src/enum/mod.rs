@@ -8,7 +8,5 @@ pub mod instance_status;
 pub mod map_provider;
 pub mod operator_type;
 pub mod order_type;
-pub mod pay_method;
-pub mod publish_method;
 pub mod task_action;
 pub mod task_status;

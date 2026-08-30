@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use kilnonedre_common_grpc::{common::GrpcMapProvider, util::error::grpc_err_internal_msg};
+use kilnonedre_common_grpc::{geo::GrpcMapProvider, util::error::grpc_err_internal_msg};
 use kilnonedre_common_web::{util::error::svc_err_internal_msg, ApiError};
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
