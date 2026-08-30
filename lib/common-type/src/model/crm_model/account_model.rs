@@ -1,8 +1,8 @@
 use sea_orm::prelude::Uuid;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Serialize, ToSchema, Clone, Default, Debug)]
+#[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAccountModel {
     /// 用户 ID
@@ -34,7 +34,7 @@ pub struct CrmAccountModel {
     pub avatar_id: Option<Uuid>,
 }
 
-#[derive(Serialize, ToSchema, Clone, Default, Debug)]
+#[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmCompositeAccountModel {
     /// 用户 ID
@@ -66,7 +66,7 @@ pub struct CrmCompositeAccountModel {
     pub avatar_id: Option<Uuid>,
 }
 
-#[derive(Serialize, ToSchema, Clone, Default, Debug)]
+#[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAggregateAccountModel {
     /// 用户 ID

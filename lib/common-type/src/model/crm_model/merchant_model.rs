@@ -1,8 +1,8 @@
 use sea_orm::prelude::Uuid;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Serialize, ToSchema, Clone, Default, Debug)]
+#[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmMerchantModel {
     /// 唯一标识符
@@ -18,7 +18,7 @@ pub struct CrmMerchantModel {
     pub code: String,
 }
 
-#[derive(Serialize, ToSchema, Clone, Default, Debug)]
+#[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmCompositeMerchantModel {
     /// 唯一标识符
@@ -34,7 +34,7 @@ pub struct CrmCompositeMerchantModel {
     pub code: String,
 }
 
-#[derive(Serialize, ToSchema, Clone, Default, Debug)]
+#[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAggregateMerchantModel {
     /// 唯一标识符

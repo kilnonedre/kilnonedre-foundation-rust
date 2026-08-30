@@ -1,8 +1,8 @@
 use sea_orm::prelude::Uuid;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Serialize, ToSchema, Clone, Default)]
+#[derive(Serialize, ToSchema, Clone, Default, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmRoleModel {
     /// ID
@@ -18,7 +18,7 @@ pub struct CrmRoleModel {
     pub code: String,
 }
 
-#[derive(Serialize, ToSchema, Clone, Default)]
+#[derive(Serialize, ToSchema, Clone, Default, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmCompositeRoleModel {
     /// ID
@@ -34,7 +34,7 @@ pub struct CrmCompositeRoleModel {
     pub code: String,
 }
 
-#[derive(Serialize, ToSchema, Clone, Default)]
+#[derive(Serialize, ToSchema, Clone, Default, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAggregateRoleModel {
     /// ID
