@@ -46,7 +46,7 @@ async fn batch_read(
     Ok(resp.accounts)
 }
 
-pub async fn read_account_aggregate(
+pub async fn read_aggregate(
     payload: GrpcCrmAccountServiceOperatorIdentity,
 ) -> Result<CrmAggregateAccountModel, ApiError> {
     let account = read(payload).await?;
@@ -56,7 +56,7 @@ pub async fn read_account_aggregate(
     Ok(account_aggregate)
 }
 
-pub async fn list_account_aggregate_as_map(
+pub async fn list_aggregate_as_map(
     profile_payload_set: HashSet<GrpcCrmAccountServiceOperatorIdentity>,
 ) -> Result<HashMap<Uuid, CrmAggregateAccountModel>, ApiError> {
     let accounts = batch_read(profile_payload_set).await?;
@@ -68,7 +68,7 @@ pub async fn list_account_aggregate_as_map(
     Ok(account_map)
 }
 
-pub async fn list_account_composite_as_map(
+pub async fn list_composite_as_map(
     profile_payload_set: HashSet<GrpcCrmAccountServiceOperatorIdentity>,
 ) -> Result<HashMap<Uuid, CrmCompositeAccountModel>, ApiError> {
     let accounts = batch_read(profile_payload_set).await?;
@@ -80,7 +80,7 @@ pub async fn list_account_composite_as_map(
     Ok(account_map)
 }
 
-pub async fn list_account_model_as_map(
+pub async fn list_model_as_map(
     profile_payload_set: HashSet<GrpcCrmAccountServiceOperatorIdentity>,
 ) -> Result<HashMap<Uuid, CrmAccountModel>, ApiError> {
     let accounts = batch_read(profile_payload_set).await?;

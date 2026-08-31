@@ -28,7 +28,7 @@ async fn batch_read(
     Ok(resp.merchants)
 }
 
-pub async fn list_merchant_aggregate_as_map(
+pub async fn list_aggregate_as_map(
     id_set: HashSet<Uuid>,
 ) -> Result<HashMap<Uuid, CrmAggregateMerchantModel>, ApiError> {
     let merchants = batch_read(id_set).await?;
@@ -41,7 +41,7 @@ pub async fn list_merchant_aggregate_as_map(
     Ok(merchant_map)
 }
 
-pub async fn list_merchant_composite_as_map(
+pub async fn list_composite_as_map(
     id_set: HashSet<Uuid>,
 ) -> Result<HashMap<Uuid, CrmCompositeMerchantModel>, ApiError> {
     let merchants = batch_read(id_set).await?;
@@ -54,7 +54,7 @@ pub async fn list_merchant_composite_as_map(
     Ok(merchant_map)
 }
 
-pub async fn list_merchant_model_as_map(
+pub async fn list_model_as_map(
     id_set: HashSet<Uuid>,
 ) -> Result<HashMap<Uuid, CrmMerchantModel>, ApiError> {
     let merchants = batch_read(id_set).await?;

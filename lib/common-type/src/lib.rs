@@ -6,7 +6,7 @@ mod snapshot;
 mod util;
 
 pub use mapper::{
-    crm_mapper::account_mapper,
+    crm_snap_mapper::account_snap_mapper,
     to_common_audit_resp::{to_common_audit_base_resp, to_common_audit_resp},
     to_common_record_resp::{to_common_base_record_resp, to_common_record_resp},
     to_common_resp::{to_common_base_resp, to_common_resp},
@@ -21,7 +21,7 @@ pub use model::{
         merchant_model::{CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel},
         role_model::{CrmAggregateRoleModel, CrmCompositeRoleModel, CrmRoleModel},
     },
-    geo_model::location_model::{GeoLocationModel, GeoLocationReq, GeoLocationResp},
+    geo_model::location_model::{GeoAggregateLocationModel, GeoLocationModel, GeoLocationReq},
     operator_context::*,
     page_req,
     response_list_t::{PageInfo, ResponseListT},

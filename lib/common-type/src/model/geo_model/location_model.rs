@@ -17,7 +17,7 @@ pub struct GeoLocationReq {
 
 #[derive(Debug, Serialize, ToSchema, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct GeoLocationResp {
+pub struct GeoAggregateLocationModel {
     /// 定位记录 ID
     pub id: Uuid,
 

@@ -8,16 +8,16 @@ use kilnonedre_common_misc::util::{
     operator_context::operator_context_to_grpc, set_to_vec::uuid_set_to_string_vec,
     string_to_uuid::svc_parse_uuid, vec_to_map::try_vec_to_map_by,
 };
-use kilnonedre_common_type::{GeoLocationReq, GeoLocationResp, OperatorContext};
+use kilnonedre_common_type::{GeoAggregateLocationModel, GeoLocationReq, OperatorContext};
 use uuid::Uuid;
 
 use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 
 use crate::mapper::geo_mapper::location_mapper;
 
-pub async fn list_location_as_map(
+pub async fn list_aggregate_as_map(
     id_set: HashSet<Uuid>,
-) -> Result<HashMap<Uuid, GeoLocationResp>, ApiError> {
+) -> Result<HashMap<Uuid, GeoAggregateLocationModel>, ApiError> {
     let ids = uuid_set_to_string_vec(id_set);
 
     let resp = GrpcGeoLocationClient::batch_read(GrpcGeoLocationServiceBatchReadRequest { ids })
@@ -32,7 +32,7 @@ pub async fn list_location_as_map(
     Ok(location_map)
 }
 
-pub async fn create_location(
+pub async fn create(
     operator_context: &OperatorContext,
     payload: &GeoLocationReq,
 ) -> Result<Uuid, ApiError> {
@@ -62,12 +62,12 @@ pub async fn create_location(
     Ok(location_id)
 }
 
-pub async fn create_location_opt(
+pub async fn create_opt(
     operator_context: &OperatorContext,
     location_opt: &Option<GeoLocationReq>,
 ) -> Result<Option<Uuid>, ApiError> {
     if let Some(location) = location_opt.clone() {
-        let location_id = create_location(operator_context, &location).await?;
+        let location_id = create(operator_context, &location).await?;
         Ok(Some(location_id))
     } else {
         Ok(None)
