@@ -19,3 +19,14 @@ pub fn ensure_merchant_match(
 
     Err(svc_err_internal_msg("无权操作该数据"))
 }
+
+pub fn batch_ensure_merchant_match(
+    operator_context: &OperatorContext,
+    target_merchant_ids: &Vec<Uuid>,
+) -> Result<(), ApiError> {
+    for merchant_id in target_merchant_ids {
+        ensure_merchant_match(operator_context, merchant_id)?;
+    }
+
+    Ok(())
+}
