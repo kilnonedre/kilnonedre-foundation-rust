@@ -3,7 +3,7 @@ use utoipa::ToSchema;
 use uuid::Uuid;
 
 /// 账户快照
-#[derive(Serialize, ToSchema, Clone, Deserialize)]
+#[derive(Serialize, ToSchema, Clone, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAccountSnap {
     /// 账户 ID
