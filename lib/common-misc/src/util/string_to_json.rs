@@ -23,3 +23,14 @@ pub fn from_json_opt<T: DeserializeOwned>(json: &Option<Json>) -> Option<T> {
     json.as_ref()
         .map(|v| serde_json::from_value(v.clone()).expect("JSON 反序列化失败"))
 }
+
+#[track_caller]
+pub fn from_json_string<T: DeserializeOwned>(json: &String) -> T {
+    serde_json::from_str(json).expect("JSON 反序列化失败")
+}
+
+#[track_caller]
+pub fn from_json_string_opt<T: DeserializeOwned>(json: &Option<String>) -> Option<T> {
+    json.as_deref()
+        .map(|v| serde_json::from_str(v).expect("JSON 反序列化失败"))
+}
