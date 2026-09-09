@@ -5,17 +5,20 @@ use sea_orm::prelude::DateTimeWithTimeZone;
 use tonic::Status;
 
 /// 格式化 DateTimeWithTimeZone
+#[track_caller]
 pub fn format_datetime(value: &DateTimeWithTimeZone) -> String {
     value.to_rfc3339()
 }
 
 /// 解析 DateTimeWithTimeZone
+#[track_caller]
 pub fn svc_parse_datetime(s: &str) -> Result<DateTimeWithTimeZone, ApiError> {
     DateTime::<FixedOffset>::parse_from_rfc3339(s)
         .map_err(|e| svc_err_internal(e, "日期时间格式错误"))
 }
 
 /// 解析可选 DateTimeWithTimeZone
+#[track_caller]
 pub fn svc_parse_datetime_opt(
     s: &Option<String>,
 ) -> Result<Option<DateTimeWithTimeZone>, ApiError> {
@@ -23,6 +26,7 @@ pub fn svc_parse_datetime_opt(
 }
 
 /// 批量解析 DateTimeWithTimeZone
+#[track_caller]
 pub fn svc_batch_parse_datetime(s: &Vec<String>) -> Result<Vec<DateTimeWithTimeZone>, ApiError> {
     s.iter()
         .map(|datetime| svc_parse_datetime(datetime))
@@ -30,6 +34,7 @@ pub fn svc_batch_parse_datetime(s: &Vec<String>) -> Result<Vec<DateTimeWithTimeZ
 }
 
 /// 批量解析可选 DateTimeWithTimeZone
+#[track_caller]
 pub fn svc_batch_parse_datetime_opt(
     s: &Option<Vec<String>>,
 ) -> Result<Option<Vec<DateTimeWithTimeZone>>, ApiError> {
@@ -37,17 +42,20 @@ pub fn svc_batch_parse_datetime_opt(
 }
 
 /// 解析 gRPC DateTimeWithTimeZone
+#[track_caller]
 pub fn grpc_parse_datetime(s: &str) -> Result<DateTimeWithTimeZone, Status> {
     DateTime::<FixedOffset>::parse_from_rfc3339(s)
         .map_err(|e| grpc_err_internal(e, "日期时间格式错误"))
 }
 
 /// 解析可选 gRPC DateTimeWithTimeZone
+#[track_caller]
 pub fn grpc_parse_datetime_opt(s: &Option<String>) -> Result<Option<DateTimeWithTimeZone>, Status> {
     s.as_deref().map(grpc_parse_datetime).transpose()
 }
 
 /// 批量解析 gRPC DateTimeWithTimeZone
+#[track_caller]
 pub fn grpc_batch_parse_datetime(s: &Vec<String>) -> Result<Vec<DateTimeWithTimeZone>, Status> {
     s.iter()
         .map(|datetime| grpc_parse_datetime(datetime))
@@ -55,6 +63,7 @@ pub fn grpc_batch_parse_datetime(s: &Vec<String>) -> Result<Vec<DateTimeWithTime
 }
 
 /// 批量解析可选 gRPC DateTimeWithTimeZone
+#[track_caller]
 pub fn grpc_batch_parse_datetime_opt(
     s: &Option<Vec<String>>,
 ) -> Result<Option<Vec<DateTimeWithTimeZone>>, Status> {
