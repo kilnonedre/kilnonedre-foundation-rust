@@ -5,7 +5,7 @@ pub fn svc_err_internal<E>(e: E, msg: &str) -> ApiError
 where
     E: std::error::Error,
 {
-    log::error!("❌ {}: {}", msg, e);
+    log::error!("❌ {}: {}\n详细错误: {:?}", msg, e, e);
     ApiError::Internal
 }
 
@@ -20,7 +20,8 @@ pub fn svc_err_bad_request<E>(e: E, svc: u16, err_no: u16, msg: &str) -> ApiErro
 where
     E: std::error::Error,
 {
-    log::warn!("⚠️ {}: {}", msg, e);
+    log::warn!("⚠️ {}: {}\n详细错误: {:?}", msg, e, e);
+
     ApiError::BadRequest {
         svc,
         err_no,
@@ -31,6 +32,7 @@ where
 #[track_caller]
 pub fn svc_err_bad_request_msg(svc: u16, err_no: u16, msg: &str) -> ApiError {
     log::warn!("⚠️ {}", msg);
+
     ApiError::BadRequest {
         svc,
         err_no,
