@@ -34,3 +34,14 @@ pub fn from_json_string_opt<T: DeserializeOwned>(json: &Option<String>) -> Optio
     json.as_deref()
         .map(|v| serde_json::from_str(v).expect("JSON 反序列化失败"))
 }
+
+#[track_caller]
+pub fn json_to_string(json: &Json) -> String {
+    serde_json::to_string(json).expect("JSON 转字符串失败")
+}
+
+#[track_caller]
+pub fn json_to_string_opt(json: &Option<Json>) -> Option<String> {
+    json.as_ref()
+        .map(|v| serde_json::to_string(v).expect("JSON 转字符串失败"))
+}
