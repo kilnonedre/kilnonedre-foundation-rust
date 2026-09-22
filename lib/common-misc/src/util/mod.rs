@@ -1,5 +1,6 @@
 pub mod amount;
 pub mod collect_ids;
+pub mod collect_map;
 pub mod diff_audit;
 pub mod fetch_page;
 pub mod generate_no;

@@ -29,13 +29,21 @@ where
     let body =
         serde_json::to_string(payload).map_err(|e| svc_err_internal(e, "Json 序列化失败"))?;
 
-    producer
+    let delivery = producer
         .send(
             FutureRecord::to(topic).key(key).payload(&body),
             Duration::from_secs(5),
         )
         .await
         .map_err(|(e, _)| svc_err_internal(e, "Kafka 消息发送失败"))?;
+
+    log::info!(
+        "📤 Kafka 消息发送成功: topic={}, key={}, partition={}, offset={}",
+        topic,
+        key,
+        delivery.partition,
+        delivery.offset
+    );
 
     Ok(())
 }
