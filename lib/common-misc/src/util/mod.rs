@@ -21,3 +21,4 @@ pub mod string_to_uuid;
 pub mod sync_list_by_diff;
 pub mod uuid_opt_to_string;
 pub mod vec_to_map;
+pub mod vec_to_set;
