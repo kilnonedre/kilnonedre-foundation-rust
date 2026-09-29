@@ -116,9 +116,9 @@ pub async fn batch_sync_list_by_diff<
     to_create_req: impl Fn(&Key, &SyncReq) -> CreateReq,
     to_update_req: impl Fn(&Key, &SyncReq) -> UpdateReq,
     to_delete_req: impl Fn(&Old) -> DeleteReq,
-    batch_create: impl FnOnce(Vec<(Key, CreateReq)>) -> FutCreate,
-    batch_update: impl FnOnce(Vec<(Key, Id, UpdateReq)>) -> FutUpdate,
-    batch_delete: impl FnOnce(Vec<(Key, Id, DeleteReq)>) -> FutDelete,
+    batch_create: impl FnOnce(HashMap<Key, Vec<CreateReq>>) -> FutCreate,
+    batch_update: impl FnOnce(HashMap<Key, HashMap<Id, UpdateReq>>) -> FutUpdate,
+    batch_delete: impl FnOnce(HashMap<Key, HashMap<Id, DeleteReq>>) -> FutDelete,
     not_found_msg: &str,
 ) -> Result<(Vec<UpdateResp>, Vec<CreateResp>), ApiError>
 where
@@ -143,9 +143,11 @@ where
         old_map.entry(old_key(model)).or_default().push(model);
     }
 
-    let mut create_payloads = Vec::new();
-    let mut update_payloads = Vec::new();
-    let mut delete_payloads = Vec::new();
+    let mut create_payload_map: HashMap<Key, Vec<CreateReq>> = HashMap::new();
+
+    let mut update_payload_map: HashMap<Key, HashMap<Id, UpdateReq>> = HashMap::new();
+
+    let mut delete_payload_map: HashMap<Key, HashMap<Id, DeleteReq>> = HashMap::new();
 
     for (key, payloads) in payload_map {
         let old_models = old_map.get(key);
@@ -168,10 +170,17 @@ where
                         return Err(svc_err_bad_request_msg(1, 1, not_found_msg));
                     }
 
-                    update_payloads.push((*key, id, to_update_req(key, item)));
+                    update_payload_map
+                        .entry(*key)
+                        .or_default()
+                        .insert(id, to_update_req(key, item));
                 }
+
                 None => {
-                    create_payloads.push((*key, to_create_req(key, item)));
+                    create_payload_map
+                        .entry(*key)
+                        .or_default()
+                        .push(to_create_req(key, item));
                 }
             }
         }
@@ -181,16 +190,20 @@ where
                 let id = old_id(old_model);
 
                 if !new_id_set.contains(&id) {
-                    delete_payloads.push((*key, id, to_delete_req(old_model)));
+                    delete_payload_map
+                        .entry(*key)
+                        .or_default()
+                        .insert(id, to_delete_req(old_model));
                 }
             }
         }
     }
 
-    batch_delete(delete_payloads).await?;
+    batch_delete(delete_payload_map).await?;
 
-    let updated = batch_update(update_payloads).await?;
-    let created = batch_create(create_payloads).await?;
+    let updated = batch_update(update_payload_map).await?;
+
+    let created = batch_create(create_payload_map).await?;
 
     Ok((updated, created))
 }
