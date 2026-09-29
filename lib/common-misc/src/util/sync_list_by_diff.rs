@@ -10,6 +10,7 @@ use uuid::Uuid;
 use crate::util::merchant_match::ensure_merchant_match;
 
 pub async fn sync_list_by_diff<
+    Key,
     Old,
     SyncReq,
     CreateReq,
@@ -24,6 +25,7 @@ pub async fn sync_list_by_diff<
     FutDelete,
 >(
     operator_context: &OperatorContext,
+    key: Key,
     payload: &[SyncReq],
     read_old: impl FnOnce() -> FutRead,
     old_id: impl Fn(&Old) -> Id,
@@ -32,12 +34,13 @@ pub async fn sync_list_by_diff<
     to_create_req: impl Fn(&SyncReq) -> CreateReq,
     to_update_req: impl Fn(&SyncReq) -> UpdateReq,
     to_delete_req: impl Fn(&Old) -> DeleteReq,
-    batch_create: impl FnOnce(Vec<CreateReq>) -> FutCreate,
-    batch_update: impl FnOnce(HashMap<Id, UpdateReq>) -> FutUpdate,
-    batch_delete: impl FnOnce(HashMap<Id, DeleteReq>) -> FutDelete,
+    batch_create: impl FnOnce(HashMap<Key, Vec<CreateReq>>) -> FutCreate,
+    batch_update: impl FnOnce(HashMap<Key, HashMap<Id, UpdateReq>>) -> FutUpdate,
+    batch_delete: impl FnOnce(HashMap<Key, HashMap<Id, DeleteReq>>) -> FutDelete,
     not_found_msg: &str,
 ) -> Result<(Vec<UpdateResp>, Vec<CreateResp>), ApiError>
 where
+    Key: Eq + Hash + Copy,
     Id: Eq + Hash + Copy,
     FutRead: Future<Output = Result<Vec<Old>, ApiError>>,
     FutCreate: Future<Output = Result<Vec<CreateResp>, ApiError>>,
@@ -51,6 +54,7 @@ where
     }
 
     let old_id_set = old_models.iter().map(&old_id).collect::<HashSet<_>>();
+
     let new_id_set = payload
         .iter()
         .filter_map(&payload_id)
@@ -83,10 +87,11 @@ where
         }
     }
 
-    batch_delete(delete_payloads).await?;
+    batch_delete(HashMap::from([(key, delete_payloads)])).await?;
 
-    let updated = batch_update(update_payloads).await?;
-    let created = batch_create(create_payloads).await?;
+    let updated = batch_update(HashMap::from([(key, update_payloads)])).await?;
+
+    let created = batch_create(HashMap::from([(key, create_payloads)])).await?;
 
     Ok((updated, created))
 }
