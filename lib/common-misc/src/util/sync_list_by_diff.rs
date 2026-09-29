@@ -116,9 +116,9 @@ pub async fn batch_sync_list_by_diff<
     to_create_req: impl Fn(&Key, &SyncReq) -> CreateReq,
     to_update_req: impl Fn(&Key, &SyncReq) -> UpdateReq,
     to_delete_req: impl Fn(&Old) -> DeleteReq,
-    batch_create: impl FnOnce(Vec<CreateReq>) -> FutCreate,
-    batch_update: impl FnOnce(HashMap<Id, UpdateReq>) -> FutUpdate,
-    batch_delete: impl FnOnce(HashMap<Id, DeleteReq>) -> FutDelete,
+    batch_create: impl FnOnce(Vec<(Key, CreateReq)>) -> FutCreate,
+    batch_update: impl FnOnce(Vec<(Key, Id, UpdateReq)>) -> FutUpdate,
+    batch_delete: impl FnOnce(Vec<(Key, Id, DeleteReq)>) -> FutDelete,
     not_found_msg: &str,
 ) -> Result<(Vec<UpdateResp>, Vec<CreateResp>), ApiError>
 where
@@ -144,8 +144,8 @@ where
     }
 
     let mut create_payloads = Vec::new();
-    let mut update_payloads = HashMap::new();
-    let mut delete_payloads = HashMap::new();
+    let mut update_payloads = Vec::new();
+    let mut delete_payloads = Vec::new();
 
     for (key, payloads) in payload_map {
         let old_models = old_map.get(key);
@@ -168,10 +168,10 @@ where
                         return Err(svc_err_bad_request_msg(1, 1, not_found_msg));
                     }
 
-                    update_payloads.insert(id, to_update_req(key, item));
+                    update_payloads.push((*key, id, to_update_req(key, item)));
                 }
                 None => {
-                    create_payloads.push(to_create_req(key, item));
+                    create_payloads.push((*key, to_create_req(key, item)));
                 }
             }
         }
@@ -181,7 +181,7 @@ where
                 let id = old_id(old_model);
 
                 if !new_id_set.contains(&id) {
-                    delete_payloads.insert(id, to_delete_req(old_model));
+                    delete_payloads.push((*key, id, to_delete_req(old_model)));
                 }
             }
         }
