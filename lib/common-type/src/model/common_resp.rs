@@ -1,5 +1,5 @@
 use sea_orm::prelude::DateTimeWithTimeZone;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 use uuid::Uuid;
 
@@ -10,7 +10,7 @@ use crate::{
     EntityStatus,
 };
 
-#[derive(Serialize, ToSchema, Clone, Debug)]
+#[derive(Serialize, ToSchema, Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommonBaseResp {
     /// 唯一标识
@@ -40,7 +40,7 @@ pub struct CommonBaseResp {
     pub updated_reason: Option<String>,
 }
 
-#[derive(Serialize, ToSchema, Clone, Debug)]
+#[derive(Serialize, ToSchema, Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommonResp {
     /// 租户
