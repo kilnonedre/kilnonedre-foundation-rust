@@ -68,3 +68,14 @@ pub fn batch_generate_refund_order_no(
 ) -> Vec<String> {
     batch_generate_no(&OrderType::RF, operator_context, count)
 }
+
+pub fn generate_picking_order_no(operator_context: &OperatorContext) -> String {
+    generate_no(&OrderType::SO, operator_context)
+}
+
+pub fn batch_generate_picking_order_no(
+    operator_context: &OperatorContext,
+    count: usize,
+) -> Vec<String> {
+    batch_generate_no(&OrderType::SO, operator_context, count)
+}
