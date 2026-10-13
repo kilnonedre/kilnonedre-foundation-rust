@@ -22,6 +22,12 @@ pub enum OrderType {
 
     /// 分拣单（SO，Sorting Order）
     SO,
+
+    /// 盘点单（SC，Stock Count）
+    SC,
+
+    /// 溢损单（SA，Stock Adjustment）
+    SA,
 }
 
 impl fmt::Display for OrderType {
@@ -32,6 +38,8 @@ impl fmt::Display for OrderType {
             Self::IO => "IO",
             Self::RF => "RF",
             Self::SO => "SO",
+            Self::SC => "SC",
+            Self::SA => "SA",
         })
     }
 }
