@@ -1,3 +1,4 @@
+pub mod approval_status_enum;
 pub mod assignee_type_enum;
 pub mod audit_status_enum;
 pub mod db_enum;
