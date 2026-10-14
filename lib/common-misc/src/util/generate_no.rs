@@ -79,3 +79,25 @@ pub fn batch_generate_picking_order_no(
 ) -> Vec<String> {
     batch_generate_no(&OrderType::SO, operator_context, count)
 }
+
+pub fn generate_stock_count_order_no(operator_context: &OperatorContext) -> String {
+    generate_no(&OrderType::SC, operator_context)
+}
+
+pub fn batch_generate_stock_count_order_no(
+    operator_context: &OperatorContext,
+    count: usize,
+) -> Vec<String> {
+    batch_generate_no(&OrderType::SC, operator_context, count)
+}
+
+pub fn generate_stock_adjustment_order_no(operator_context: &OperatorContext) -> String {
+    generate_no(&OrderType::SA, operator_context)
+}
+
+pub fn batch_generate_stock_adjustment_order_no(
+    operator_context: &OperatorContext,
+    count: usize,
+) -> Vec<String> {
+    batch_generate_no(&OrderType::SA, operator_context, count)
+}
