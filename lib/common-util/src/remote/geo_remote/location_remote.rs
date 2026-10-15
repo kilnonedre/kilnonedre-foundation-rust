@@ -12,7 +12,8 @@ use kilnonedre_common_misc::util::{
     string_to_uuid::svc_parse_uuid, vec_to_map::try_vec_to_map_by,
 };
 use kilnonedre_common_type::{
-    GeoAggregateLocationModel, GeoLocationReq, GeoLocationSnap, OperatorContext,
+    GeoAggregateLocationModel, GeoCompositeLocationModel, GeoLocationReq, GeoLocationSnap,
+    OperatorContext,
 };
 use uuid::Uuid;
 
@@ -32,14 +33,28 @@ async fn batch_read(
     Ok(resp.locations)
 }
 
+pub async fn list_composite_as_map(
+    id_set: HashSet<Uuid>,
+) -> Result<HashMap<Uuid, GeoCompositeLocationModel>, ApiError> {
+    let locations = batch_read(id_set).await?;
+
+    let location_map =
+        try_vec_to_map_by(locations, location_mapper::grpc_to_composite, |location| {
+            location.id
+        })?;
+
+    Ok(location_map)
+}
+
 pub async fn list_aggregate_as_map(
     id_set: HashSet<Uuid>,
 ) -> Result<HashMap<Uuid, GeoAggregateLocationModel>, ApiError> {
     let locations = batch_read(id_set).await?;
 
-    let location_map = try_vec_to_map_by(locations, location_mapper::grpc_to_model, |location| {
-        location.id
-    })?;
+    let location_map =
+        try_vec_to_map_by(locations, location_mapper::grpc_to_aggregate, |location| {
+            location.id
+        })?;
 
     Ok(location_map)
 }
