@@ -1,4 +1,3 @@
-mod mapper;
 mod remote;
 
 pub use remote::{
@@ -6,4 +5,5 @@ pub use remote::{
     geo_remote::location_remote,
 };
 
+pub mod mapper;
 pub mod scheduler;
