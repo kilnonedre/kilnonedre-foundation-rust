@@ -25,6 +25,16 @@ pub struct GeoAggregateLocationModel {
     pub base: GeoLocationModel,
 }
 
+#[derive(Debug, Serialize, ToSchema, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GeoCompositeLocationModel {
+    /// 定位记录 ID
+    pub id: Uuid,
+
+    #[serde(flatten)]
+    pub base: GeoLocationModel,
+}
+
 #[derive(Debug, Serialize, Deserialize, ToSchema, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct GeoLocationModel {

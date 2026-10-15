@@ -23,7 +23,9 @@ pub use model::{
         merchant_model::{CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel},
         role_model::{CrmAggregateRoleModel, CrmCompositeRoleModel, CrmRoleModel},
     },
-    geo_model::location_model::{GeoAggregateLocationModel, GeoLocationModel, GeoLocationReq},
+    geo_model::location_model::{
+        GeoAggregateLocationModel, GeoCompositeLocationModel, GeoLocationModel, GeoLocationReq,
+    },
     operator_context::*,
     page_req,
     response_list_t::{PageInfo, ResponseListT},
