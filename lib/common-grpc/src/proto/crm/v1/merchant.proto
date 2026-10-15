@@ -29,4 +29,10 @@ message GrpcCrmMerchantServiceMerchantResponse {
 
   // 编码
   string code = 3;
+
+  // 证件号码
+  optional string license_no = 4;
+
+  // Logo ID
+  optional string logo_id = 5;
 }

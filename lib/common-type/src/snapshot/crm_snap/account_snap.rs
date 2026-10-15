@@ -2,13 +2,15 @@ use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 use uuid::Uuid;
 
+use crate::CommonSnap;
+
 /// 账户快照
 #[derive(Serialize, ToSchema, Clone, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAccountSnap {
-    /// 账户 ID
-    #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
-    pub id: Uuid,
+    /// 快照
+    #[serde(flatten)]
+    pub meta: CommonSnap,
 
     /// 身份 ID
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]

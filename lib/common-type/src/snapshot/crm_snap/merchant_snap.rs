@@ -16,4 +16,12 @@ pub struct CrmMerchantSnap {
     /// 编码
     #[schema(example = "xxxxxxxxxx")]
     pub code: String,
+
+    /// 证件号码
+    #[schema(example = "xxxxxxxx")]
+    pub license_no: Option<String>,
+
+    /// Logo ID
+    #[schema(example = "xxxxxxxx")]
+    pub logo_id: Option<Uuid>,
 }

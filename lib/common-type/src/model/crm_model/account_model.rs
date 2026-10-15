@@ -2,12 +2,18 @@ use sea_orm::prelude::Uuid;
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
+use crate::{CrmAggregateMerchantModel, CrmCompositeMerchantModel};
+
 #[derive(Serialize, ToSchema, Clone, Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CrmAccountModel {
-    /// 用户 ID
+    /// ID
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
     pub id: Uuid,
+
+    /// 租户 ID
+    #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
+    pub merchant_id: Uuid,
 
     /// 身份 ID
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
@@ -41,6 +47,9 @@ pub struct CrmCompositeAccountModel {
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
     pub id: Uuid,
 
+    /// 租户
+    pub merchant: CrmCompositeMerchantModel,
+
     /// 身份 ID
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
     pub profile_id: Uuid,
@@ -72,6 +81,9 @@ pub struct CrmAggregateAccountModel {
     /// 用户 ID
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
     pub id: Uuid,
+
+    /// 租户
+    pub merchant: CrmAggregateMerchantModel,
 
     /// 身份 ID
     #[schema(example = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")]
