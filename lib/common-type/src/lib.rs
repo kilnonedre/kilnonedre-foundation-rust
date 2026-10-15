@@ -6,10 +6,11 @@ mod snapshot;
 mod util;
 
 pub use mapper::{
-    crm_snap_mapper::account_snap_mapper,
+    crm_snap_mapper::{account_snap_mapper, merchant_snap_mapper},
     to_common_audit_resp::{to_common_audit_base_resp, to_common_audit_resp},
     to_common_record_resp::{to_common_base_record_resp, to_common_record_resp},
     to_common_resp::{to_common_base_resp, to_common_resp},
+    to_common_snap::to_common_snap,
 };
 pub use model::{
     audit_diff_resp::{AuditDiffResp, AuditFieldChangeResp},
@@ -33,7 +34,10 @@ pub use r#enum::{
     gender_type::GenderType, instance_status::InstanceStatus, map_provider::*, operator_type::*,
     order_type::*, task_action::TaskAction, task_status::TaskStatus,
 };
-pub use snapshot::crm_snap::account_snap::CrmAccountSnap;
+pub use snapshot::{
+    common_snap::CommonSnap,
+    crm_snap::{account_snap::CrmAccountSnap, merchant_snap::CrmMerchantSnap},
+};
 pub use util::{
     http_request::{
         extract_client_ip, get_device_id, get_header_ua, get_operator_context, get_x_merchant_id,
