@@ -1,7 +1,7 @@
 use kilnonedre_common_grpc::crm::GrpcCrmMerchantServiceMerchantResponse;
 use kilnonedre_common_misc::util::string_to_uuid::svc_parse_uuid;
 use kilnonedre_common_type::{
-    CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel,
+    CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel, CrmMerchantSnap,
 };
 use kilnonedre_common_web::ApiError;
 
@@ -39,6 +39,20 @@ pub fn grpc_to_aggregate(
     let model = grpc_to_model(grpc_model)?;
 
     let result = CrmAggregateMerchantModel {
+        id: model.id,
+        name: model.name,
+        code: model.code,
+    };
+
+    Ok(result)
+}
+
+pub fn grpc_to_snap(
+    grpc_model: GrpcCrmMerchantServiceMerchantResponse,
+) -> Result<CrmMerchantSnap, ApiError> {
+    let model = grpc_to_model(grpc_model)?;
+
+    let result = CrmMerchantSnap {
         id: model.id,
         name: model.name,
         code: model.code,

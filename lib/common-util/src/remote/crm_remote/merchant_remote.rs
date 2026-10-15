@@ -8,7 +8,7 @@ use kilnonedre_common_misc::util::{
     set_to_vec::uuid_set_to_string_vec, vec_to_map::try_vec_to_map_by,
 };
 use kilnonedre_common_type::{
-    CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel,
+    CrmAggregateMerchantModel, CrmCompositeMerchantModel, CrmMerchantModel, CrmMerchantSnap,
 };
 use uuid::Uuid;
 
@@ -26,6 +26,18 @@ async fn batch_read(
         .map_err(|e| svc_err_internal(e, "租户获取失败"))?;
 
     Ok(resp.merchants)
+}
+
+pub async fn list_snap_as_map(
+    id_set: HashSet<Uuid>,
+) -> Result<HashMap<Uuid, CrmMerchantSnap>, ApiError> {
+    let merchants = batch_read(id_set).await?;
+
+    let merchant_map = try_vec_to_map_by(merchants, merchant_mapper::grpc_to_snap, |merchant| {
+        merchant.id
+    })?;
+
+    Ok(merchant_map)
 }
 
 pub async fn list_aggregate_as_map(

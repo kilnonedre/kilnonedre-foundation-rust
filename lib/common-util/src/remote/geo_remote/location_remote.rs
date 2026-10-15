@@ -1,33 +1,57 @@
 use std::collections::{HashMap, HashSet};
 
 use kilnonedre_common_grpc::{
-    geo::{GrpcGeoLocationServiceBatchReadRequest, GrpcGeoLocationServiceCreateRequest},
+    geo::{
+        GrpcGeoLocationServiceBatchReadRequest, GrpcGeoLocationServiceCreateRequest,
+        GrpcGeoLocationServiceLocationResponse,
+    },
     GrpcGeoLocationClient,
 };
 use kilnonedre_common_misc::util::{
     operator_context::operator_context_to_grpc, set_to_vec::uuid_set_to_string_vec,
     string_to_uuid::svc_parse_uuid, vec_to_map::try_vec_to_map_by,
 };
-use kilnonedre_common_type::{GeoAggregateLocationModel, GeoLocationReq, OperatorContext};
+use kilnonedre_common_type::{
+    GeoAggregateLocationModel, GeoLocationReq, GeoLocationSnap, OperatorContext,
+};
 use uuid::Uuid;
 
 use kilnonedre_common_web::{util::error::svc_err_internal, ApiError};
 
 use crate::mapper::geo_mapper::location_mapper;
 
-pub async fn list_aggregate_as_map(
+async fn batch_read(
     id_set: HashSet<Uuid>,
-) -> Result<HashMap<Uuid, GeoAggregateLocationModel>, ApiError> {
+) -> Result<Vec<GrpcGeoLocationServiceLocationResponse>, ApiError> {
     let ids = uuid_set_to_string_vec(id_set);
 
     let resp = GrpcGeoLocationClient::batch_read(GrpcGeoLocationServiceBatchReadRequest { ids })
         .await
         .map_err(|e| svc_err_internal(e, "定位数据获取失败"))?;
 
-    let location_map =
-        try_vec_to_map_by(resp.locations, location_mapper::grpc_to_model, |location| {
-            location.id
-        })?;
+    Ok(resp.locations)
+}
+
+pub async fn list_aggregate_as_map(
+    id_set: HashSet<Uuid>,
+) -> Result<HashMap<Uuid, GeoAggregateLocationModel>, ApiError> {
+    let locations = batch_read(id_set).await?;
+
+    let location_map = try_vec_to_map_by(locations, location_mapper::grpc_to_model, |location| {
+        location.id
+    })?;
+
+    Ok(location_map)
+}
+
+pub async fn list_snap_as_map(
+    id_set: HashSet<Uuid>,
+) -> Result<HashMap<Uuid, GeoLocationSnap>, ApiError> {
+    let locations = batch_read(id_set).await?;
+
+    let location_map = try_vec_to_map_by(locations, location_mapper::grpc_to_snap, |location| {
+        location.id
+    })?;
 
     Ok(location_map)
 }

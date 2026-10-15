@@ -7,6 +7,7 @@ mod util;
 
 pub use mapper::{
     crm_snap_mapper::{account_snap_mapper, merchant_snap_mapper},
+    geo_snap_mapper::location_snap_mapper,
     to_common_audit_resp::{to_common_audit_base_resp, to_common_audit_resp},
     to_common_record_resp::{to_common_base_record_resp, to_common_record_resp},
     to_common_resp::{to_common_base_resp, to_common_resp},
@@ -37,6 +38,7 @@ pub use r#enum::{
 pub use snapshot::{
     common_snap::CommonSnap,
     crm_snap::{account_snap::CrmAccountSnap, merchant_snap::CrmMerchantSnap},
+    geo_snap::location_snap::GeoLocationSnap,
 };
 pub use util::{
     http_request::{
