@@ -11,7 +11,7 @@ pub use mapper::{
     to_common_audit_resp::{to_common_audit_base_resp, to_common_audit_resp},
     to_common_record_resp::{to_common_base_record_resp, to_common_record_resp},
     to_common_resp::{to_common_base_resp, to_common_resp},
-    to_common_snap::to_common_snap,
+    to_common_snap,
 };
 pub use model::{
     audit_diff_resp::{AuditDiffResp, AuditFieldChangeResp},
