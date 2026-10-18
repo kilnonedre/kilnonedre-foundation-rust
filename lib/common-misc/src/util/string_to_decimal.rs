@@ -16,3 +16,15 @@ pub fn svc_string_to_decimal(str: &String) -> Result<Decimal, ApiError> {
 pub fn grpc_string_to_decimal(str: &String) -> Result<Decimal, Status> {
     string_to_decimal(str).map_err(|e| grpc_err_internal(e, "Decimal 转化失败"))
 }
+
+pub fn string_to_decimal_opt(str: &Option<String>) -> Result<Option<Decimal>, Error> {
+    str.as_ref().map(|s| string_to_decimal(s)).transpose()
+}
+
+pub fn svc_string_to_decimal_opt(str: &Option<String>) -> Result<Option<Decimal>, ApiError> {
+    string_to_decimal_opt(str).map_err(|e| svc_err_internal(e, "Decimal 转化失败"))
+}
+
+pub fn grpc_string_to_decimal_opt(str: &Option<String>) -> Result<Option<Decimal>, Status> {
+    string_to_decimal_opt(str).map_err(|e| grpc_err_internal(e, "Decimal 转化失败"))
+}
