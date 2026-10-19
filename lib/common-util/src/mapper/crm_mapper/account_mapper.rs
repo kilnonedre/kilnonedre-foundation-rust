@@ -3,8 +3,9 @@ use std::collections::HashMap;
 use kilnonedre_common_grpc::crm::GrpcCrmAccountServiceAccountResponse;
 use kilnonedre_common_misc::util::string_to_uuid::{svc_parse_uuid, svc_parse_uuid_opt};
 use kilnonedre_common_type::{
-    lookup_required, CrmAccountModel, CrmAggregateAccountModel, CrmAggregateMerchantModel,
-    CrmCompositeAccountModel, CrmCompositeMerchantModel,
+    lookup_required, to_common_snap, CrmAccountModel, CrmAccountSnap, CrmAggregateAccountModel,
+    CrmAggregateMerchantModel, CrmCompositeAccountModel, CrmCompositeMerchantModel,
+    CrmMerchantSnap,
 };
 use kilnonedre_common_web::ApiError;
 use uuid::Uuid;
@@ -74,6 +75,25 @@ pub fn grpc_to_aggregate(
         email: grpc_model.email,
         phone: grpc_model.phone,
         avatar_id,
+    };
+
+    Ok(result)
+}
+
+pub fn grpc_to_snap(
+    grpc_model: GrpcCrmAccountServiceAccountResponse,
+    merchant_snap_map: &HashMap<Uuid, CrmMerchantSnap>,
+) -> Result<CrmAccountSnap, ApiError> {
+    let (id, merchant_id, profile_id, avatar_id) = extract_base(&grpc_model)?;
+
+    let result = CrmAccountSnap {
+        profile_id,
+        username: grpc_model.username,
+        handle: grpc_model.handle,
+        email: grpc_model.email,
+        phone: grpc_model.phone,
+        avatar_id,
+        meta: to_common_snap::model_to_common_snap(&id, &merchant_id, merchant_snap_map),
     };
 
     Ok(result)
