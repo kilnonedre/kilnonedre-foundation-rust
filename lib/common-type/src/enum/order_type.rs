@@ -28,6 +28,9 @@ pub enum OrderType {
 
     /// 溢损单（SA，Stock Adjustment）
     SA,
+
+    /// 出库单（OO，Outbound Order）
+    OO,
 }
 
 impl fmt::Display for OrderType {
@@ -40,6 +43,7 @@ impl fmt::Display for OrderType {
             Self::SO => "SO",
             Self::SC => "SC",
             Self::SA => "SA",
+            Self::OO => "OO",
         })
     }
 }
