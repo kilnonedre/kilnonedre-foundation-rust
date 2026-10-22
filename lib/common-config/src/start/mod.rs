@@ -151,6 +151,7 @@ fn build_http_server(
                     .allow_any_origin()
                     .allow_any_method()
                     .allow_any_header()
+                    .expose_headers(vec!["Content-Disposition"])
                     .max_age(3600),
             )
             .app_data(db_data.clone());
