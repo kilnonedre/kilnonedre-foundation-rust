@@ -10,6 +10,7 @@ pub mod operator_context;
 pub mod page_info;
 pub mod regex;
 pub mod relation;
+pub mod resolve_status_transition;
 pub mod schedule;
 pub mod set_to_vec;
 pub mod string_to_datetime;
