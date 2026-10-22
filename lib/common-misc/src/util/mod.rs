@@ -1,4 +1,5 @@
 pub mod amount;
+pub mod bool_to_decimal;
 pub mod collect_ids;
 pub mod collect_map;
 pub mod diff_audit;
