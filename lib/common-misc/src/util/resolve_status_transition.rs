@@ -1,4 +1,4 @@
-pub fn resolve_status_transition<T: PartialEq>(
+pub fn resolve_transition<T: PartialEq>(
     old_status: &T,
     new_status: &T,
     from: &Vec<T>,
