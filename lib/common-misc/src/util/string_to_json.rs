@@ -10,7 +10,9 @@ pub fn to_json<T: Serialize>(value: &T) -> Json {
 pub fn to_json_opt<T: Serialize>(value: &Option<T>) -> Option<Json> {
     value
         .as_ref()
-        .map(|v| serde_json::to_value(v).expect("JSON 序列化失败"))
+        .map(serde_json::to_value)
+        .transpose()
+        .expect("JSON 序列化失败")
 }
 
 #[track_caller]
@@ -21,7 +23,9 @@ pub fn from_json<T: DeserializeOwned>(json: &Json) -> T {
 #[track_caller]
 pub fn from_json_opt<T: DeserializeOwned>(json: &Option<Json>) -> Option<T> {
     json.as_ref()
-        .map(|v| serde_json::from_value(v.clone()).expect("JSON 反序列化失败"))
+        .map(|v| serde_json::from_value(v.clone()))
+        .transpose()
+        .expect("JSON 反序列化失败")
 }
 
 #[track_caller]
@@ -32,7 +36,9 @@ pub fn from_json_string<T: DeserializeOwned>(json: &String) -> T {
 #[track_caller]
 pub fn from_json_string_opt<T: DeserializeOwned>(json: &Option<String>) -> Option<T> {
     json.as_deref()
-        .map(|v| serde_json::from_str(v).expect("JSON 反序列化失败"))
+        .map(serde_json::from_str)
+        .transpose()
+        .expect("JSON 反序列化失败")
 }
 
 #[track_caller]
@@ -43,5 +49,7 @@ pub fn json_to_string(json: &Json) -> String {
 #[track_caller]
 pub fn json_to_string_opt(json: &Option<Json>) -> Option<String> {
     json.as_ref()
-        .map(|v| serde_json::to_string(v).expect("JSON 转字符串失败"))
+        .map(serde_json::to_string)
+        .transpose()
+        .expect("JSON 转字符串失败")
 }
