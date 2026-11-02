@@ -3,6 +3,7 @@ pub mod bool_to_decimal;
 pub mod collect_ids;
 pub mod collect_map;
 pub mod diff_audit;
+pub mod excel;
 pub mod fetch_page;
 pub mod generate_no;
 pub mod group_by_sorted;
