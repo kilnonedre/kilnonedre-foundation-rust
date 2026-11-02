@@ -1,4 +1,8 @@
-use rust_xlsxwriter::{Format, Worksheet, XlsxError};
+use rust_xlsxwriter::{Worksheet, XlsxError};
+
+use crate::util::excel::style::{
+    cell_format, header_format, label_format, title_format, value_format,
+};
 
 mod style;
 
@@ -15,7 +19,7 @@ pub fn set_column_widths(worksheet: &mut Worksheet, widths: &[f64]) -> Result<()
 pub fn write_title(worksheet: &mut Worksheet, title: &str, last_col: u16) -> Result<(), XlsxError> {
     worksheet.set_row_height(0, 48)?;
 
-    worksheet.merge_range(0, 0, 0, last_col, title, &super::style::title_format())?;
+    worksheet.merge_range(0, 0, 0, last_col, title, &title_format())?;
 
     worksheet.set_row_height(1, 18)?;
 
@@ -34,9 +38,9 @@ pub fn write_info(
 ) -> Result<(), XlsxError> {
     worksheet.set_row_height(row, 32)?;
 
-    worksheet.write_with_format(row, label_col, label, &super::style::label_format())?;
+    worksheet.write_with_format(row, label_col, label, &label_format())?;
 
-    let format = super::style::value_format();
+    let format = value_format();
 
     if value_start_col == value_end_col {
         worksheet.write_with_format(row, value_start_col, value, &format)?;
@@ -55,7 +59,7 @@ pub fn write_header(
 ) -> Result<(), XlsxError> {
     worksheet.set_row_height(row, 36)?;
 
-    let format = super::style::header_format();
+    let format = header_format();
 
     for (col, header) in headers.iter().enumerate() {
         worksheet.write_with_format(row, col as u16, *header, &format)?;
@@ -73,7 +77,7 @@ pub fn write_row(
 ) -> Result<(), XlsxError> {
     worksheet.set_row_height(row, 32)?;
 
-    let format = super::style::cell_format(index % 2 != 0);
+    let format = cell_format(index % 2 != 0);
 
     for (col, value) in values.iter().enumerate() {
         worksheet.write_with_format(row, col as u16, value.as_str(), &format)?;
