@@ -5,6 +5,8 @@ use tonic::{Request, Status};
 
 use crate::crm::grpc_crm_consumer_profile_service_client::GrpcCrmConsumerProfileServiceClient;
 use crate::crm::{
+    GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordRequest,
+    GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordResponse,
     GrpcCrmConsumerProfileServiceCreateRequest, GrpcCrmConsumerProfileServiceCreateResponse,
     GrpcCrmConsumerProfileServiceDeleteRequest, GrpcCrmConsumerProfileServiceDeleteResponse,
     GrpcCrmConsumerProfileServiceGetOpenIdRequest, GrpcCrmConsumerProfileServiceGetOpenIdResponse,
@@ -78,6 +80,16 @@ impl GrpcCrmConsumerProfileClient {
         let client = lock.as_mut().unwrap();
         let request = Request::new(payload);
         let response = client.inner.delete(request).await?;
+        Ok(response.into_inner())
+    }
+
+    pub async fn batch_read_ids_by_keyword(
+        payload: GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordRequest,
+    ) -> Result<GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordResponse, Status> {
+        let mut lock = GLOBAL_CLIENT.lock().await;
+        let client = lock.as_mut().unwrap();
+        let request = Request::new(payload);
+        let response = client.inner.batch_read_ids_by_keyword(request).await?;
         Ok(response.into_inner())
     }
 }

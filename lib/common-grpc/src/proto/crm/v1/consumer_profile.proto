@@ -19,6 +19,8 @@ service GrpcCrmConsumerProfileService {
 
   // 创建
   rpc Delete(GrpcCrmConsumerProfileServiceDeleteRequest) returns (GrpcCrmConsumerProfileServiceDeleteResponse);
+
+  rpc BatchReadIdsByKeyword(GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordRequest) returns (GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordResponse);
 }
 
 // 微信小程序登录请求
@@ -122,3 +124,11 @@ message GrpcCrmConsumerProfileServiceDeleteRequest {
 
 // 创建客户响应
 message GrpcCrmConsumerProfileServiceDeleteResponse {}
+
+message GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordRequest {
+  string keyword = 1;
+}
+
+message GrpcCrmConsumerProfileServiceBatchReadIdsByKeywordResponse {
+  repeated string ids = 1;
+}
