@@ -4,6 +4,7 @@ pub use client::{
     crm::{
         account::GrpcCrmAccountClient, consumer_profile::GrpcCrmConsumerProfileClient,
         identity::GrpcCrmIdentityClient, merchant::GrpcCrmMerchantClient,
+        seller_profile::GrpcCrmSellerProfileClient,
     },
     geo::location::GrpcGeoLocationClient,
     workflow::process::WorkflowProcessGrpcClient,

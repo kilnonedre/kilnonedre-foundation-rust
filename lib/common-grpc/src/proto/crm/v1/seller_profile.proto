@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package crm.v1;
+
+service GrpcCrmSellerProfileService {
+  rpc BatchReadIdsByKeyword(GrpcCrmSellerProfileServiceBatchReadIdsByKeywordRequest) returns (GrpcCrmSellerProfileServiceBatchReadIdsByKeywordResponse);
+}
+
+message GrpcCrmSellerProfileServiceBatchReadIdsByKeywordRequest {
+  string keyword = 1;
+}
+
+message GrpcCrmSellerProfileServiceBatchReadIdsByKeywordResponse {
+  repeated string ids = 1;
+}

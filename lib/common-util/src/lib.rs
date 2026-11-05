@@ -1,7 +1,7 @@
 mod remote;
 
 pub use remote::{
-    crm_remote::{account_remote, consumer_profile_remote, merchant_remote},
+    crm_remote::{account_remote, consumer_profile_remote, merchant_remote, seller_profile_remote},
     geo_remote::location_remote,
 };
 

@@ -10,6 +10,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             "./src/proto/crm/v1/identity.proto",
             "./src/proto/crm/v1/consumer_profile.proto",
             "./src/proto/crm/v1/merchant.proto",
+            "./src/proto/crm/v1/seller_profile.proto",
             // svc-workflow
             "./src/proto/workflow/v1/process.proto",
             // svc-geo
