@@ -1,6 +1,6 @@
 use kilnonedre_common_grpc::{
     GrpcCrmAccountClient, GrpcCrmConsumerProfileClient, GrpcCrmIdentityClient,
-    GrpcCrmMerchantClient,
+    GrpcCrmMerchantClient, GrpcCrmSellerProfileClient,
 };
 
 use crate::{
@@ -38,6 +38,18 @@ pub fn spawn_crm_consumer_profile_grpc_reconnect() {
         format!("{}:{}", *GRPC_CRM_HOST, *GRPC_CRM_PORT),
         |addr| async move {
             GrpcCrmConsumerProfileClient::init(&addr)
+                .await
+                .map_err(|e| e.into())
+        },
+    );
+}
+
+pub fn spawn_crm_seller_profile_grpc_reconnect() {
+    spawn_grpc_reconnect(
+        "CrmSellerProfile",
+        format!("{}:{}", *GRPC_CRM_HOST, *GRPC_CRM_PORT),
+        |addr| async move {
+            GrpcCrmSellerProfileClient::init(&addr)
                 .await
                 .map_err(|e| e.into())
         },
