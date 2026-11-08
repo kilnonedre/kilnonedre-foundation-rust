@@ -34,3 +34,14 @@ enum GrpcApprovalStatus {
   // 用户取消
   GRPC_APPROVAL_STATUS_CANCELLED = 4;
 }
+
+enum GrpcGenderType {
+  // 默认值
+  GRPC_GENDER_TYPE_UNSPECIFIED = 0;
+  // 男
+  GRPC_GENDER_TYPE_MALE = 1;
+  // 女
+  GRPC_GENDER_TYPE_FEMALE = 2;
+  // 未知
+  GRPC_GENDER_TYPE_UNKNOWN = 3;
+}
