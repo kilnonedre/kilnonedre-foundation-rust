@@ -97,3 +97,19 @@ pub fn grpc_to_grpc_gender_type(value: i32) -> Result<GrpcGenderType, Status> {
     GrpcGenderType::try_from(value)
         .map_err(|_| grpc_err_internal_msg(&format!("非法 gender_type: {}", value)))
 }
+
+pub fn svc_to_gender_type_opt(value: Option<i32>) -> Result<Option<GenderType>, ApiError> {
+    value.map(svc_to_gender_type).transpose()
+}
+
+pub fn grpc_to_gender_type_opt(value: Option<i32>) -> Result<Option<GenderType>, Status> {
+    value.map(grpc_to_gender_type).transpose()
+}
+
+pub fn svc_to_grpc_gender_type_opt(value: Option<i32>) -> Result<Option<GrpcGenderType>, ApiError> {
+    value.map(svc_to_grpc_gender_type).transpose()
+}
+
+pub fn grpc_to_grpc_gender_type_opt(value: Option<i32>) -> Result<Option<GrpcGenderType>, Status> {
+    value.map(grpc_to_grpc_gender_type).transpose()
+}
