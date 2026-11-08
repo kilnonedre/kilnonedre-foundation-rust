@@ -34,7 +34,7 @@ pub use model::{
 pub use r#enum::{
     approval_action_status::ApprovalActionStatus, approval_status::ApprovalStatus,
     approval_status::*, assignee_type::AssigneeType, audit_status::AuditStatus, entity_status::*,
-    gender_type::GenderType, instance_status::InstanceStatus, map_provider::*, operator_type::*,
+    gender_type::*, instance_status::InstanceStatus, map_provider::*, operator_type::*,
     order_type::*, task_action::TaskAction, task_status::TaskStatus,
 };
 pub use snapshot::{
