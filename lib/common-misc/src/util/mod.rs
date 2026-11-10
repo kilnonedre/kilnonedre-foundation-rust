@@ -7,6 +7,7 @@ pub mod excel;
 pub mod fetch_page;
 pub mod generate_no;
 pub mod group_by_sorted;
+pub mod map;
 pub mod merchant_match;
 pub mod operator_context;
 pub mod page_info;
