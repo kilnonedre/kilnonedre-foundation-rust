@@ -31,6 +31,12 @@ pub enum OrderType {
 
     /// 出库单（OO，Outbound Order）
     OO,
+
+    /// 客户对账单（CS，Customer Settlement）
+    CS,
+
+    /// 采购对账单（PS，Purchase Settlement）
+    PS,
 }
 
 impl fmt::Display for OrderType {
@@ -44,6 +50,8 @@ impl fmt::Display for OrderType {
             Self::SC => "SC",
             Self::SA => "SA",
             Self::OO => "OO",
+            Self::CS => "CS",
+            Self::PS => "PS",
         })
     }
 }
