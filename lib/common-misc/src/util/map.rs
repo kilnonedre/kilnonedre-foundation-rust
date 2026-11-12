@@ -10,3 +10,10 @@ where
         None => Ok(None),
     }
 }
+
+pub fn map_opt<T, R, F>(value: Option<T>, mapper: F) -> Option<R>
+where
+    F: FnOnce(T) -> R,
+{
+    value.map(mapper)
+}
