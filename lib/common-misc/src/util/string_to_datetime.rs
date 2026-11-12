@@ -10,6 +10,11 @@ pub fn format_datetime(value: &DateTimeWithTimeZone) -> String {
     value.to_rfc3339()
 }
 
+#[track_caller]
+pub fn format_datetime_opt(value: &Option<DateTimeWithTimeZone>) -> Option<String> {
+    value.as_ref().map(|v| v.to_rfc3339())
+}
+
 /// 解析 DateTimeWithTimeZone
 #[track_caller]
 pub fn svc_parse_datetime(s: &str) -> Result<DateTimeWithTimeZone, ApiError> {
