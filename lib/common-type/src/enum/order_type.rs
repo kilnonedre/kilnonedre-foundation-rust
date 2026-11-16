@@ -20,6 +20,9 @@ pub enum OrderType {
     /// 退款单（RF，Refund）
     RF,
 
+    /// 退货报损单（RL，Refund Loss）
+    RL,
+
     /// 分拣单（SO，Sorting Order）
     SO,
 
@@ -46,6 +49,7 @@ impl fmt::Display for OrderType {
             Self::PO => "PO",
             Self::IO => "IO",
             Self::RF => "RF",
+            Self::RL => "RL",
             Self::SO => "SO",
             Self::SC => "SC",
             Self::SA => "SA",
