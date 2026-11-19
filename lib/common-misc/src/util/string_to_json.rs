@@ -1,5 +1,5 @@
 use sea_orm::entity::prelude::Json;
-use serde::{de::DeserializeOwned, Serialize};
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
 #[track_caller]
 pub fn to_json<T: Serialize>(value: &T) -> Json {
@@ -21,9 +21,12 @@ pub fn from_json<T: DeserializeOwned>(json: &Json) -> T {
 }
 
 #[track_caller]
-pub fn from_json_opt<T: DeserializeOwned>(json: &Option<Json>) -> Option<T> {
+pub fn from_json_opt<'de, T>(json: &'de Option<Json>) -> Option<T>
+where
+    T: Deserialize<'de>,
+{
     json.as_ref()
-        .map(|v| serde_json::from_value(v.clone()))
+        .map(|v| T::deserialize(v))
         .transpose()
         .expect("JSON 反序列化失败")
 }
