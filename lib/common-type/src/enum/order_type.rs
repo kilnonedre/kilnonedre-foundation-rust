@@ -43,6 +43,9 @@ pub enum OrderType {
 
     /// 采购退货单（PR，Refund Purchase）
     RP,
+
+    /// 供应商分拣单（SP，Supplier Picking Order）
+    SP,
 }
 
 impl fmt::Display for OrderType {
@@ -60,6 +63,7 @@ impl fmt::Display for OrderType {
             Self::CS => "CS",
             Self::PS => "PS",
             Self::RP => "RP",
+            Self::SP => "SP",
         })
     }
 }
