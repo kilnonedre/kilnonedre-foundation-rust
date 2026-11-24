@@ -35,7 +35,7 @@ pub fn title_format() -> Format {
 pub fn label_format() -> Format {
     base_format()
         .set_background_color(BACKGROUND_COLOR)
-        .set_align(FormatAlign::Left)
+        .set_align(FormatAlign::Center)
 }
 
 // 信息内容样式
