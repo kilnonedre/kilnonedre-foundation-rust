@@ -4,8 +4,8 @@ const FONT_NAME: &str = "Arial";
 const FONT_SIZE: f64 = 10.0;
 
 const FONT_COLOR: Color = Color::Black;
-const BORDER_COLOR: Color = Color::Black;
-const BACKGROUND_COLOR: Color = Color::RGB(0xD9D9D9);
+const BORDER_COLOR: Color = Color::RGB(0x555555);
+const BACKGROUND_COLOR: Color = Color::RGB(0xD7D7D7);
 
 // 基础样式
 fn base_format() -> Format {
@@ -26,9 +26,6 @@ pub fn title_format() -> Format {
         .set_font_size(14)
         .set_background_color(BACKGROUND_COLOR)
         .set_align(FormatAlign::Center)
-        .set_border_top(FormatBorder::Thick)
-        .set_border_left(FormatBorder::Thick)
-        .set_border_right(FormatBorder::Thick)
 }
 
 // 信息标签样式
@@ -60,17 +57,14 @@ pub fn difference_format(alternate: bool) -> Format {
     cell_format(alternate).set_bold()
 }
 
+// 空白行样式
+pub fn spacer_format() -> Format {
+    Format::new().set_background_color(Color::White)
+}
+
 // 外围边框样式
-pub fn outline_format(format: Format, first_col: bool, last_col: bool) -> Format {
-    let mut format = format;
-
-    if first_col {
-        format = format.set_border_left(FormatBorder::Thick);
-    }
-
-    if last_col {
-        format = format.set_border_right(FormatBorder::Thick);
-    }
-
-    format
+pub fn outline_format() -> Format {
+    Format::new()
+        .set_border(FormatBorder::Medium)
+        .set_border_color(Color::Black)
 }
