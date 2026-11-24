@@ -7,6 +7,9 @@ const FONT_COLOR: Color = Color::Black;
 const BORDER_COLOR: Color = Color::RGB(0x555555);
 const BACKGROUND_COLOR: Color = Color::RGB(0xD7D7D7);
 
+const OUTLINE_COLOR: Color = Color::Black;
+const OUTLINE_BORDER: FormatBorder = FormatBorder::Medium;
+
 // 基础样式
 fn base_format() -> Format {
     Format::new()
@@ -57,14 +60,56 @@ pub fn difference_format(alternate: bool) -> Format {
     cell_format(alternate).set_bold()
 }
 
-// 空白行样式
+// 空白分隔行样式
 pub fn spacer_format() -> Format {
-    Format::new().set_background_color(Color::White)
+    base_format()
+        .set_background_color(Color::White)
+        .set_border_left(FormatBorder::None)
+        .set_border_right(FormatBorder::None)
+}
+
+// 合并区域内部单元格样式
+pub fn merged_cell_format(format: Format, first_col: bool, last_col: bool) -> Format {
+    let mut format = format;
+
+    if !first_col {
+        format = format.set_border_left(FormatBorder::None);
+    }
+
+    if !last_col {
+        format = format.set_border_right(FormatBorder::None);
+    }
+
+    format
 }
 
 // 外围边框样式
-pub fn outline_format() -> Format {
-    Format::new()
-        .set_border(FormatBorder::Medium)
-        .set_border_color(Color::Black)
+pub fn outline_format(format: Format, top: bool, bottom: bool, left: bool, right: bool) -> Format {
+    let mut format = format;
+
+    if top {
+        format = format
+            .set_border_top(OUTLINE_BORDER)
+            .set_border_top_color(OUTLINE_COLOR);
+    }
+
+    if bottom {
+        format = format
+            .set_border_bottom(OUTLINE_BORDER)
+            .set_border_bottom_color(OUTLINE_COLOR);
+    }
+
+    if left {
+        format = format
+            .set_border_left(OUTLINE_BORDER)
+            .set_border_left_color(OUTLINE_COLOR);
+    }
+
+    if right {
+        format = format
+            .set_border_right(OUTLINE_BORDER)
+            .set_border_right_color(OUTLINE_COLOR);
+    }
+
+    format
 }
